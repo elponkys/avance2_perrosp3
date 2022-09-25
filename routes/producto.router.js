@@ -103,9 +103,9 @@ router.delete(
   validatorHandler(getProductoId, 'params'),
   async (req, res) => {
     const { id } = req.params;
+    const result = await service.delete(id);
     res.json({
-      message: 'delete',
-      id,
+      result,
     });
   }
 );

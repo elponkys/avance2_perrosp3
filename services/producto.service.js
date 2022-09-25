@@ -11,7 +11,7 @@ class productoService {
     for (let index = 0; index < limit; index++) {
     
         this.productos.push({
-            Stock: faker.datatype.int(),
+            Stock: faker.datatype.number(),
             id: faker.datatype.uuid(),
             id_usuario: faker.datatype.uuid(),
             numero: faker.phone.phoneNumber(),
@@ -37,14 +37,12 @@ class productoService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var productos = this.productos.slice(0, limit);
-        if (productos.length > 0) {
-          resolve(productos);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var productos = this.productos.slice(0, limit);
+      if (productos.length > 0) {
+        resolve(productos);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -86,13 +84,19 @@ class productoService {
   }
 
   async delete(id) {
+    const producto = this.productos.find((item) => item.id === id);
+    if(!producto) {
+      return {
+        message: 'Producto no encontrado para eliminar',
+      }
+    }
     const index = this.productos.findIndex((item) => item.id == id);
     if (index === -1) {
       if (index === -1) throw boom.notFound('Producto no encontrado');
     }
     this.productos.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Producto eliminado exitosamente',
       id,
     };
   }

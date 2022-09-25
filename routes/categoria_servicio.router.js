@@ -27,7 +27,7 @@ router.get(
       const categoria_servicio = await service.findOne(id);
       res.json({
         success: true,
-        message: 'Este es el producto encontrado',
+        message: 'Relación Categoría-Servicio encontrada',
         data: categoria_servicio,
       });
     } catch (error) {
@@ -103,9 +103,9 @@ router.delete(
   validatorHandler(getCategoria_servicioId, 'params'),
   async (req, res) => {
     const { id } = req.params;
+    const result = await service.delete(id);
     res.json({
-      message: 'delete',
-      id,
+      result,
     });
   }
 );

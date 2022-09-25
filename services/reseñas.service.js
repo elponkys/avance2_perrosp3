@@ -33,14 +33,12 @@ class reseñaService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var reseñas = this.reseñas.slice(0, limit);
-        if (reseñas.length > 0) {
-          resolve(reseñas);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var reseñas = this.reseñas.slice(0, limit);
+      if (reseñas.length > 0) {
+        resolve(reseñas);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -82,13 +80,19 @@ class reseñaService {
   }
 
   async delete(id) {
+    const resenia = this.reseñas.find((item) => item.id === id);
+    if(!resenia) {
+      return {
+        message: 'Reseña no encontrado para eliminar',
+      }
+    }
     const index = this.reseñas.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Reseña no encontrada');
     }
     this.reseñas.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Reseña eliminada exitosamente',
       id,
     };
   }

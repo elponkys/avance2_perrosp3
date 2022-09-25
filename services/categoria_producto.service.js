@@ -31,14 +31,12 @@ class categoria_productoService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var categoria_productos = this.categoria_productos.slice(0, limit);
-        if (categoria_productos.length > 0) {
-          resolve(categoria_productos);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var categoria_productos = this.categoria_productos.slice(0, limit);
+      if (categoria_productos.length > 0) {
+        resolve(categoria_productos);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -80,13 +78,19 @@ class categoria_productoService {
   }
 
   async delete(id) {
+    const categoria_productos = this.categoria_productos.find((item) => item.id === id);
+    if(!categoria_productos) {
+      return {
+        message: 'Relación Categoria-Producto no encontrada para eliminar',
+      }
+    }
     const index = this.categoria_productos.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Relación Categoría-Producto no encontrada');
     }
     this.categoria_productos.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Relación Categoría-Producto eliminada exitosamente',
       id,
     };
   }

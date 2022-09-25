@@ -27,7 +27,7 @@ router.get(
       const servicio = await service.findOne(id);
       res.json({
         success: true,
-        message: 'Este es el producto encontrado',
+        message: 'Servicio encontrado',
         data: servicio,
       });
     } catch (error) {
@@ -103,9 +103,9 @@ router.delete(
   validatorHandler(getServicioId, 'params'),
   async (req, res) => {
     const { id } = req.params;
+    const result = await service.delete(id);
     res.json({
-      message: 'delete',
-      id,
+      result,
     });
   }
 );

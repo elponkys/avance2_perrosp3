@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 //SCHEMA PARA DATOS REQUERIDOS Y LOGICA DE NEGOCIO
-const id = Joi.string().alphanum();
-const id_producto = Joi.string().alphanum();
-const id_imagen = Joi.string().alphanum();
+const id = Joi.string();
+const id_producto = Joi.string();
+const id_imagen = Joi.string();
 
 const createAsignacion_imagenDto = Joi.object({
     id_producto: id_producto.required(),

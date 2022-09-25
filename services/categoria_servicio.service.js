@@ -31,14 +31,12 @@ class categoria_servicioService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var categoria_servicios = this.categoria_servicios.slice(0, limit);
-        if (categoria_servicios.length > 0) {
-          resolve(categoria_servicios);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var categoria_servicios = this.categoria_servicios.slice(0, limit);
+      if (categoria_servicios.length > 0) {
+        resolve(categoria_servicios);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -80,13 +78,19 @@ class categoria_servicioService {
   }
 
   async delete(id) {
+    const categoria_servicio = this.categoria_servicios.find((item) => item.id === id);
+    if(!categoria_servicio) {
+      return {
+        message: 'Relación Categoria-Servicio no encontrado para eliminar',
+      }
+    }
     const index = this.categoria_servicios.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Relación Categoría-Servicio no encontrado');
     }
     this.categoria_servicios.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Relación Categoría-Servicio eliminada exitosamente',
       id,
     };
   }

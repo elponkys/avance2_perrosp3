@@ -20,14 +20,14 @@ router.get('/', async (req, res) => {
 
 router.get(
   '/:id',
-  validatorHandler(getreseñaId, 'params'),
+  validatorHandler(getReseñaId, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
       const reseña = await service.findOne(id);
       res.json({
         success: true,
-        message: 'Este es el producto encontrado',
+        message: 'Reseña encontrada',
         data: reseña,
       });
     } catch (error) {
@@ -103,9 +103,9 @@ router.delete(
   validatorHandler(getReseñaId, 'params'),
   async (req, res) => {
     const { id } = req.params;
+    const result = await service.delete(id);
     res.json({
-      message: 'delete',
-      id,
+      result,
     });
   }
 );

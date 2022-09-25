@@ -32,14 +32,12 @@ class asignacion_imagenService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var asignacion_imagenes = this.asignacion_imagenes.slice(0, limit);
-        if (asignacion_imagenes.length > 0) {
-          resolve(asignacion_imagenes);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var asignacion_imagenes = this.asignacion_imagenes.slice(0, limit);
+      if (asignacion_imagenes.length > 0) {
+        resolve(asignacion_imagenes);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -80,13 +78,19 @@ class asignacion_imagenService {
   }
 
   async delete(id) {
+    const asignacion_imagen = this.asignacion_imagenes.find((item) => item.id === id);
+    if(!asignacion_imagen) {
+      return {
+        message: 'Asignación de imagen no encontrada para eliminar',
+      }
+    }
     const index = this.asignacion_imagenes.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Asignación de imagen no encontrada');
     }
     this.asignacion_imagenes.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Asignación de imagen eliminada exitosamente',
       id,
     };
   }

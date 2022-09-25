@@ -36,14 +36,12 @@ class adminService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var administradores = this.administradores.slice(0, limit);
-        if (administradores.length > 0) {
-          resolve(administradores);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var administradores = this.administradores.slice(0, limit);
+      if (administradores.length > 0) {
+        resolve(administradores);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -64,7 +62,7 @@ class adminService {
     validateData(
         administrador,
       CONFLICT,
-      'CONFLICTO, el producto esta bloqueado.',
+      'El administrador esta inactivo.',
       (data) => data.isActive == false
     );
     return administrador;
@@ -97,13 +95,19 @@ class adminService {
   }
 
   async delete(id) {
+    const administrador = this.administradores.find((item) => item.id === id);
+    if(!administrador) {
+      return {
+        message: 'Administrador no encontrado para eliminar',
+      }
+    }
     const index = this.administradores.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Administrador no encontrado');
     }
     this.administradores.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Administrador eliminado exitosamente',
       id,
     };
   }

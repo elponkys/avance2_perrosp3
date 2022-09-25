@@ -27,7 +27,7 @@ router.get(
       const asignacion_imagen = await service.findOne(id);
       res.json({
         success: true,
-        message: 'Este es el producto encontrado',
+        message: 'Asignación de imagen encontrada',
         data: asignacion_imagen,
       });
     } catch (error) {
@@ -103,9 +103,9 @@ router.delete(
   validatorHandler(getAsignacion_imagenId, 'params'),
   async (req, res) => {
     const { id } = req.params;
+    const result = await service.delete(id);
     res.json({
-      message: 'delete',
-      id,
+      result,
     });
   }
 );

@@ -1,9 +1,9 @@
 const Joi = require('joi');
 
 //SCHEMA PARA DATOS REQUERIDOS Y LOGICA DE NEGOCIO
-const id = Joi.string().alphanum();
-const id_categoria = Joi.string().alphanum();
-const id_servicio = Joi.string().alphanum();
+const id = Joi.string();
+const id_categoria = Joi.string();
+const id_servicio = Joi.string();
 
 const createCategoria_servicioDto = Joi.object({
     id_categoria: id_categoria.required(),

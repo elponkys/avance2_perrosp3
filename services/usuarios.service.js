@@ -33,14 +33,12 @@ class usuarioService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var usuarios = this.usuarios.slice(0, limit);
-        if (usuarios.length > 0) {
-          resolve(usuarios);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var usuarios = this.usuarios.slice(0, limit);
+      if (usuarios.length > 0) {
+        resolve(usuarios);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -61,10 +59,10 @@ class usuarioService {
     validateData(
       usuario,
       CONFLICT,
-      'CONFLICTO, el producto esta bloqueado.',
+      'El usuario está inactivo.',
       (data) => data.isActive == false
     );
-    return product;
+    return usuario;
   }
   async update(id, changes) {
     const index = this.usuarios.findIndex((item) => item.id === id);
@@ -94,13 +92,19 @@ class usuarioService {
   }
 
   async delete(id) {
+    const usuario = this.usuarios.find((item) => item.id === id);
+    if(!usuario) {
+      return {
+        message: 'Usuario no encontrado para eliminar',
+      }
+    }
     const index = this.usuarios.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Usuario no encontrado');
     }
     this.usuarios.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Usuario eliminado exitosamente',
       id,
     };
   }

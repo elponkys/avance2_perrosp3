@@ -30,14 +30,12 @@ class categoriaService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var categorias = this.categorias.slice(0, limit);
-        if (categorias.length > 0) {
-          resolve(categorias);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var categorias = this.categorias.slice(0, limit);
+      if (categorias.length > 0) {
+        resolve(categorias);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -79,13 +77,19 @@ class categoriaService {
   }
 
   async delete(id) {
+    const categoria = this.categorias.find((item) => item.id === id);
+    if(!categoria) {
+      return {
+        message: 'Categoría no encontrada para eliminar',
+      }
+    }
     const index = this.categorias.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Categoría no encontrada');
     }
     this.categorias.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Categoría eliminada exitosamente',
       id,
     };
   }

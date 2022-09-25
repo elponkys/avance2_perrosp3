@@ -36,14 +36,12 @@ class servicioService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var servicios = this.servicios.slice(0, limit);
-        if (servicios.length > 0) {
-          resolve(servicios);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var servicios = this.servicios.slice(0, limit);
+      if (servicios.length > 0) {
+        resolve(servicios);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -85,13 +83,19 @@ class servicioService {
   }
 
   async delete(id) {
+    const servicio = this.servicios.find((item) => item.id === id);
+    if(!servicio) {
+      return {
+        message: 'Servicio no encontrado para eliminar',
+      }
+    }
     const index = this.servicios.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Servicio no encontrado');
     }
     this.servicios.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Servicio eliminado exitosamente',
       id,
     };
   }

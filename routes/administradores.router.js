@@ -6,7 +6,7 @@ const service = new AdministradoresService();
 const {
   createAdministradoresDto,
   updateAdministradoresDto,
-  getAdministradoresId,
+  getAdministradorId,
 } = require('../dtos/administradores.dto');
 
 router.get('/', async (req, res) => {
@@ -20,14 +20,14 @@ router.get('/', async (req, res) => {
 
 router.get(
   '/:id',
-  validatorHandler(getAdministradoresId, 'params'),
+  validatorHandler(getAdministradorId, 'params'),
   async (req, res, next) => {
     try {
       const { id } = req.params;
       const administradores = await service.findOne(id);
       res.json({
         success: true,
-        message: 'Este es el producto encontrado',
+        message: 'Administrador encontrado',
         data: administradores,
       });
     } catch (error) {
@@ -56,7 +56,7 @@ router.post(
 //MENSAJES DE ERROR
 router.patch(
   '/:id',
-  validatorHandler(getAdministradoresId, 'params'),
+  validatorHandler(getAdministradorId, 'params'),
   validatorHandler(updateAdministradoresDto, 'body'),
   async (req, res) => {
     try {
@@ -78,7 +78,7 @@ router.patch(
 
 router.put(
   '/:id',
-  validatorHandler(getAdministradoresId, 'params'),
+  validatorHandler(getAdministradorId, 'params'),
   validatorHandler(updateAdministradoresDto, 'body'),
   async (req, res) => {
     try {
@@ -100,12 +100,12 @@ router.put(
 
 router.delete(
   '/:id',
-  validatorHandler(getAdministradoresId, 'params'),
+  validatorHandler(getAdministradorId, 'params'),
   async (req, res) => {
     const { id } = req.params;
+    const result = await service.delete(id);
     res.json({
-      message: 'delete',
-      id,
+      result,
     });
   }
 );

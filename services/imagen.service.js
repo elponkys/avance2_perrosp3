@@ -30,14 +30,12 @@ class imagenService {
 
   find(limit) {
     return new Promise((resolve, rejected) => {
-      setTimeout(() => {
-        var imagenes = this.imagenes.slice(0, limit);
-        if (imagenes.length > 0) {
-          resolve(imagenes);
-        } else {
-          rejected('');
-        }
-      }, 5000);
+      var imagenes = this.imagenes.slice(0, limit);
+      if (imagenes.length > 0) {
+        resolve(imagenes);
+      } else {
+        rejected('');
+      }
     });
   }
 
@@ -79,13 +77,19 @@ class imagenService {
   }
 
   async delete(id) {
+    const imagen = this.imagenes.find((item) => item.id === id);
+    if(!imagen) {
+      return {
+        message: 'Imagen no encontrado para eliminar',
+      }
+    }
     const index = this.imagenes.findIndex((item) => item.id == id);
     if (index === -1) {
-      if (index === -1) throw boom.notFound('Producto no encontrado');
+      if (index === -1) throw boom.notFound('Imagen no encontrada');
     }
     this.imagenes.splice(index, 1);
     return {
-      message: 'Eliminado',
+      message: 'Imagen eliminada exitosamente',
       id,
     };
   }
