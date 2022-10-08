@@ -1,0 +1,303 @@
+
+a{
+    
+    color: #0a4e5a;
+    
+}
+
+#Barra{
+    
+    width: 80%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Barra-navegacion{
+    
+    position: fixed;
+ 
+    width: 100%;
+    height: 6%;
+   
+    background-color: #6F69AC;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#Barra > input{
+   
+   height: 50%;
+   width: 95%;
+   border-color: #FFEBA1;
+   border-width: 3px;
+}
+
+body{
+    
+   display: flex;
+   flex-direction: column;
+    
+   justify-content: flex-start;
+   align-items: center;
+    
+   margin: 0;
+   padding: 0;
+   background: url(../img/Fondo_teclado_amarillo.jpg) no-repeat center top;
+   background-size: cover;
+   min-height: 100vh;
+   
+}
+
+#btn_Buscar{
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    height: 100%;
+    width: 15%;
+    
+}
+
+#btn_Buscar > button{
+    
+    width: fit-content;
+    height: 65%;
+   
+    border: none;
+    border-radius: 15px;
+    margin-bottom: 0px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #FD6F96;
+    color: #FFEBA1;
+    
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    
+}
+
+button{
+    
+    width: 60%;
+    height: 7%;
+   
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    margin-bottom: 15px;
+    
+    background: #FD6F96;
+    color: #FFEBA1;
+    
+    font-family: Copperplate;
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+   
+}
+
+.Contenedor-base{
+    
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.errorMsg{
+    background-color: #df3861;
+    color: aliceblue;
+    display: none;
+    font-size: 14px;
+    padding: 8px;
+    font-weight: bold;
+    font-family: sans-serif;
+    
+    position:absolute;
+
+    border-radius: 14px;
+}
+
+footer {
+ 
+   font-family: sans-serif;
+    font-weight:bolder;
+    
+    font-size: 90%;
+    font-stretch: condensed;
+    color: #FFEBA1;
+     
+    display: flex;
+    justify-content: space-between;
+    
+  width: 100%;
+    
+   margin-top: auto;
+   
+   
+   background-color: #6F69AC;
+   
+   
+    
+    
+ }
+
+.Formulario{
+
+    display: flex;
+    width: 60%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0px;
+    
+}
+
+#f_NacIt{
+
+    
+    border-color: white;
+    height: 100%;
+    background: white;
+        
+}
+
+h1{
+    height: 7%;
+    color: #313131;
+    font-family: Copperplate; 
+    font-weight: bold;  
+ }
+
+input{
+    
+    width: 100%;
+    height: 100%;
+    
+    
+    border-radius: 8px;
+    border-color: white;
+        
+    background: white;
+    cursor:text;
+}
+
+.inputF_Nac{
+    
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 115%;
+    background-color: aqua;
+   
+}
+
+.input-Msg{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-content: center;
+    justify-content: center;
+}
+
+ label{
+    
+    font-weight: bold;
+    color: #202020;
+    
+}
+
+#Logo{
+    
+    display: flex;
+    width: 5%;
+    height: 100%;
+    min-width: max-content;
+    align-items: center;
+    justify-content: flex-end;
+        
+    background-color: #6F69AC;
+    
+}
+
+.Logo-web{
+    
+    font-family: sans-serif;
+    font-weight:bolder;
+    
+    font-size: 150%;
+    font-stretch: condensed;
+    color: #FFEBA1;
+    
+}
+
+.mainContenedor{
+
+    display: flex;
+    
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+    padding-top: 3%;
+
+    width: 100%;
+    height: 95%;
+       
+}
+
+.Registro{
+    
+    display: flex;
+    
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+    
+    background: #95DAC1;
+    font-family: Copperplate;
+      
+    margin: 1rem;
+    padding: 1rem;
+    border: 8px solid #6F69AC;
+    
+    width: 18%;
+    height: 60%;
+
+   min-width: max-content;
+   min-height: max-content;
+    
+   border-radius: 15px;
+   border-color: #6F69AC;
+    
+}
+
+.texto-sans-serif{
+    color: #313131;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.btnReg{
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    height: 100%;
+    width: 15%;
+    
+    
+}
