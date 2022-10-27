@@ -1,11 +1,11 @@
 const Joi = require('joi');
 
 //SCHEMA PARA DATOS REQUERIDOS Y LOGICA DE NEGOCIO
-const id = Joi.string();
+const id = Joi.string().alphanum();
 const isActive = Joi.boolean();
 const nombre = Joi.string().min(3).max(50);
-const fecha = Joi.string().min(3).max(50);
-const correo = Joi.string().min(3).max(50);
+const fecha = Joi.string().min(10).max(10);
+const correo = Joi.string().min(6).max(50);
 const contraseña = Joi.string().min(3).max(50);
 //const price = Joi.number().integer().min(10);
 const image = Joi.string();

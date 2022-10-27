@@ -44,7 +44,7 @@ router.post(
       const newUsuario = await service.create(body);
       res.json({
         success: true,
-        message: 'Producto creado correctamente',
+        message: 'Usuario creado correctamente',
         data: newUsuario,
       });
     } catch (error) {
@@ -84,7 +84,7 @@ router.put(
     try {
       const { id } = req.params;
       const body = req.body;
-      const usuario = await service.updateComplete(id, body);
+      const usuario = await service.update(id, body);
       res.json({
         message: 'update total',
         data: usuario,

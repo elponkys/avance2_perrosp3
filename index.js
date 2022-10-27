@@ -2,18 +2,23 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes/');
+const db = require('./db');
 const {
-  logErrors,
-  errorHandler,
-  boomErrorHandler,
+	logErrors,
+	errorHandler,
+	boomErrorHandler,
 } = require('./middlewares/error.handler');
+const { DBURL } = require('./consts.json');
+//HACEMOS LA CONEXIÓN
+db(DBURL);
+
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(
-  express.json({
-    extended: false, // permite codificar matrices y objetos enriquecidos en formato codificado en url
-  })
+	express.json({
+		extended: false, // permite codificar matrices y objetos enriquecidos en formato codificado en url
+	})
 );
 app.get('/', async (req, res) => {
   let username = req.body.username;
