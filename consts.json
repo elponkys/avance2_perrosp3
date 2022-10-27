@@ -1,3 +1,3 @@
 {
-	"DBURL": "mongodb+srv://Cosmo:nD7bPj5FY4KFQlKo@cluster0.d0eb2my.mongodb.net/DoogyWoggie?retryWrites=true&w=majority"
+	"DBURL": "MongoDBCLUSTER"
 }
