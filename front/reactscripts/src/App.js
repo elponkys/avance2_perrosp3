@@ -13,7 +13,7 @@ import InicioSesion from './components/InicioSesion/InicioSesion';
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import './assets/css/paginaprincipal.css';
+import './assets/css/Style.css';
 
 
 function App() {

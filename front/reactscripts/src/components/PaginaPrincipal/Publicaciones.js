@@ -1,5 +1,5 @@
 import React from 'react';
-//import './../../assets/css/paginaprincipal.css';
+import './../../assets/css/paginaprincipal.css';
 
 
 class Publicaciones extends React.Component{
