@@ -1,4 +1,8 @@
 import React from 'react';
+
+
+import { Link } from 'react-router-dom';
+
 import './../../assets/css/paginaprincipal.css';
 
 
@@ -15,6 +19,7 @@ class BarraNavegacion extends React.Component{
 
              <button type = "submit" className='btn btn-danger'> Buscar </button> 
             
+            <Link to = "/PaginaPrincipal">
            <button type="button" className='btn btn-danger'>
                
                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className='bi bi-heart' viewBox="0 0 16 16">
@@ -22,8 +27,9 @@ class BarraNavegacion extends React.Component{
                 </svg>
 
            </button>
+           </Link>
 
-
+           <Link to = "/PaginaPrincipal">
             <button type="button" className='btn btn-danger'>
                
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className='bi bi-house' viewBox="0 0 16 16">
@@ -32,10 +38,18 @@ class BarraNavegacion extends React.Component{
             </svg>
 
            </button>
+           </Link>
 
+            
+            <div className='Foto_perfil'>
 
-            <div className='Foto_perfil'> <a href ="#"><img src="https://cdn-icons-png.flaticon.com/512/428/428933.png" alt="alt"/> Victor Sanchez</a></div>  
-                        
+            <Link to = "/Perfil">   
+            <img src="https://cdn-icons-png.flaticon.com/512/428/428933.png" alt="alt"/> Victor Sanchez
+            </Link> 
+            
+            </div>  
+
+                  
             </div>
 
 

@@ -30,6 +30,9 @@ list-style: none;
 text-align: center;
 padding: 0;
 
+background-color:#FFD1D1;
+   
+
 }
 
 .Elemento_Info{
@@ -55,7 +58,7 @@ color: #FF9494;
 
 body{
 
-background-color: #FFF5E4;
+background-color: #FF9494;
 
 }
 
@@ -82,7 +85,7 @@ margin: 2%;
 
 #Servicios{
 
-background-color: #FF9494;
+background-color:  white;
 width: 80%;
 
 border-radius: 15px;
@@ -91,19 +94,28 @@ border-radius: 15px;
 
 #Contenedor{
 
+    
+
 display: flex;
 justify-content: center;
 align-items: center;
 
 flex-direction: column;
 
-
+background-color: white;
 
 }
 
 #Botones{
 
-margin-bottom: 1%;
+   margin-top: 1%; 
+  
+    
+}
+
+.EncabezadoW{
+
+    background-color: white;
 
 }
 
@@ -112,107 +124,8 @@ margin-bottom: 1%;
 /* BARRA DE NAVEGACION */
 
 
-.Barra-navegacion{
-    
-    position: fixed;
- 
-    width: 100%;
-    height: 10%;
-   
-    background-color: #FF9494;
-
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   
-}
-
-#Barra{
-    
-    width: 50%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
 
 
-}
-
-.Foto_perfil{
-    
-    width: 15%; 
-
-}
 
 
-.Foto_perfil > a{
- 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.Foto_perfil > a > img{
-    
-    margin-right: 5%;
-    
-    width: 30%;
-    height: 10%;
-    border-radius: 50%;
-    
-}
-
-.Foto_perfil > a > div{
-    
-    margin-right: 5%;
-    
-    width: 10%;
-    height: 40%;
-     border-radius: 50%;
-    
-}
-
-.Foto_perfil > a {
-    
-    text-decoration:none;
-    margin-left: 5%;
-    
-    
-    font-family: sans-serif;
-    font-weight:bolder;
-    
-    font-size: 100%;
-    font-stretch: condensed;
-    color: #FFF5E4;
-    
-}
-
-.btn-danger{
-
-border-color: #FF9494;
-background-color: #FF9494;
-margin-right: 10px;
-
-}.btn-danger{
-
-border-color: #FF9494;
-background-color: #FF9494;
-margin-right: 10px;
-
-}
-
-#Barra > input{
-   
-    height: 50%;
-    width: 95%;
-
-    background-color: #FFE3E1;
-    border-color: #FFE3E1;
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    
-}

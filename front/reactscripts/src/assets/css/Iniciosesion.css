@@ -13,47 +13,6 @@ color: #FF9494;
 
 }
 
-.avatar{
-    
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    
-}
-
-#Barra{
-    
-    width: 80%;
-    height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.Barra-navegacion{
-    
-    position: fixed;
- 
-    width: 100%;
-    height: 6%;
-   
-    background-color: #6F69AC;
-
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-#Barra > input{
-   
-   height: 50%;
-   width: 95%;
-   border-color: #FFEBA1;
-   border-width: 3px;
-}
-
-
 body{
     
     display: flex;
@@ -65,9 +24,7 @@ body{
    margin: 0;
    padding: 0;
    
-   
-   
-   
+  
 }
 
 #btn_Buscar{
@@ -130,19 +87,6 @@ button{
     
 }
 
-.errorMsg{
-    background-color: #df3861;
-    color: aliceblue;
-    display: none;
-    font-size: 14px;
-    padding: 8px;
-    font-weight: bold;
-    font-family: sans-serif;
-    
-    position:absolute;
-
-    border-radius: 14px;
-}
 
 footer {
  
@@ -200,14 +144,6 @@ input{
     cursor: text;    
 }
 
-.input-Msg{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-content: center;
-    justify-content: center;
-}
-
  label{
     
     font-weight: bold;
@@ -248,29 +184,6 @@ input{
     
 }
 
-#Logo{
-    
-    display: flex;
-    width: 5%;
-    height: 100%;
-    min-width: max-content;
-    align-items: center;
-    justify-content: flex-end;
-        
-    background-color: #6F69AC;
-    
-}
-
-.Logo-web{
-    
-    font-family: sans-serif;
-    font-weight:bolder;
-    
-    font-size: 150%;
-    font-stretch: condensed;
-    color: #FFEBA1;
-    
-}
 
 .mainContenedor{
 
@@ -309,6 +222,4 @@ margin-right: 10px;
 
 }
 
-@media only screen and (max-width:700px){
-    
-}
+

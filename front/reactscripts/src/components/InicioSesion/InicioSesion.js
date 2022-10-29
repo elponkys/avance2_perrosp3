@@ -1,6 +1,7 @@
 import React from 'react';
 //import "bootstrap/dist/css/bootstrap.min.css";
-//import './../../assets/css/Inicio_sesion.css';
+import './../../assets/css/Iniciosesion.css';
+import { Link } from 'react-router-dom';
 
 
 class InicioSesion extends React.Component{
@@ -11,7 +12,6 @@ class InicioSesion extends React.Component{
         return(
             
             
-
                 <div className='mainContenedor'>
 
                     <div className='Login'>
@@ -25,9 +25,9 @@ class InicioSesion extends React.Component{
 
                     <input className='form-control' type="password" id="claveIt" placeholder="Contraseña:"></input>
                     
-
-                    <button  type="button" className='btn btn-danger' id="btnLog"> Ingresar </button>
-
+                    <br></br>
+                    <button  type="button" className='btn btn-danger' id="btnLog"><Link to = "/PaginaPrincipal"> Ingresar </Link> </button>
+                    
     
                     </form>
 

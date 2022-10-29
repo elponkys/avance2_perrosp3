@@ -1,6 +1,5 @@
 import React from 'react';
-//import './../../assets/css/perfilusuario.css';
-
+import './../../assets/css/perfilusuario.css';
 
 class Encabezado extends React.Component{
 
@@ -9,7 +8,7 @@ class Encabezado extends React.Component{
        
         return(
             
-           <div>
+           <div className='EncabezadoW'>
 
                 <div id="Encabezado">
                 <img id="Avatar" src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png"/>

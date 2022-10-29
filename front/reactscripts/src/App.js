@@ -1,7 +1,11 @@
 
-import logo from './assets/imagenes/logo.svg';
-import './assets/css/App.css';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom"
 
 import BarraNavegacion from './components/PaginaPrincipal/BarraNavegacion';
 import Publicaciones from './components/PaginaPrincipal/Publicaciones';
@@ -9,6 +13,7 @@ import Encabezado from './components/PerfilUsuario/Encabezado';
 import Infousuario from './components/PerfilUsuario/Infousuario';
 import Botones from './components/PerfilUsuario/Botones';
 import InicioSesion from './components/InicioSesion/InicioSesion';
+import PublicacionesPerfil from "./components/PerfilUsuario/PublicacionesPerfil";
 
 
 
@@ -22,8 +27,25 @@ function App() {
     
       <div className="Contenedor-base">
       
-      <BarraNavegacion/>
-      <Publicaciones/>
+      <Router>
+
+      <Routes>
+
+        <Route path ="/Perfil/Publicaciones" element = {<><BarraNavegacion/><Encabezado /><Botones /><PublicacionesPerfil /></>}  > </Route>
+
+        <Route path ="/PaginaPrincipal" element = {<><BarraNavegacion /><Publicaciones /></>}  > </Route>
+
+        <Route path ="/Perfil" element = {<><BarraNavegacion/><Encabezado /><Botones /><Infousuario /></>} > </Route>
+
+        <Route path ="/" element = {<InicioSesion/>}  > </Route>
+        
+
+      </Routes>
+
+      
+
+      </Router>
+      
     
 
       <footer>
