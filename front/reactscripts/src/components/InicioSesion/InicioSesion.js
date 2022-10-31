@@ -31,7 +31,7 @@ class InicioSesion extends React.Component{
     
                     </form>
 
-                    <a href="">Haz clic aqui para crear una cuenta</a><br></br>
+                    <a href="">Haz clic aqui para crear una cuenta</a><br></br><Link to = "/NuevaCuenta"> Ingresar </Link> 
                 
                     </div> 
 
