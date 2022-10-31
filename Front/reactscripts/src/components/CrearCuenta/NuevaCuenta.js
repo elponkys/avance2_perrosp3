@@ -35,7 +35,7 @@ class NuevaCuenta extends React.Component{
                      
                      <input type="password"  placeholder="Contraseña" id="psw" name="contraseña" pattern="(?=.*\d)(?=.*[?;:.,])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
                      </div>
-                     <div class="field">
+                     <div class="field"> 
                        <input type="text" placeholder="Servicios" name="servicios" required/>
                      </div>
                      <div class="field btn">
