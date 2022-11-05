@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-//MODELO DE LA BD
-const userSchema = new Schema({
+const adminSchema = new Schema({
 	id: mongoose.Types.ObjectId,
 	isActive: Boolean,
+	cedula: String,
 	nombre: String,
 	fecha: String,
 	correo: String,
 	contrasenia: String,
 	image: String,
 });
-const model = mongoose.model('usuario', userSchema);
+const model = mongoose.model('administradore', adminSchema);
 module.exports = model;

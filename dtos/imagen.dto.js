@@ -1,25 +1,22 @@
 const Joi = require('joi');
 
-//SCHEMA PARA DATOS REQUERIDOS Y LOGICA DE NEGOCIO
-const id = Joi.string();
+const id = Joi.string().alphanum();
 const image = Joi.string();
 
 const createImagenDto = Joi.object({
-    image: image.required(),
-
+	image: image.required(),
 });
 
 const updateImagenDto = Joi.object({
-
-  image: image,
+	image: image,
 });
 
 const getImagenId = Joi.object({
-  id: id.required(),
+	id: id.required(),
 });
 
 module.exports = {
-    createImagenDto,
-    updateImagenDto,
-    getImagenId,
+	createImagenDto,
+	updateImagenDto,
+	getImagenId,
 };

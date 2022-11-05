@@ -1,34 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const AdministradoresService = require('../services/administradores.service');
+const ProductosService = require('../services/productos.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const service = new AdministradoresService();
+const service = new ProductosService();
 const {
-	createAdministradorDto,
-	updateAdministradorDto,
-	getAdministradorId,
-} = require('../dtos/administrador.dto');
+	createProductoDto,
+	updateProductoDto,
+	getProductoId,
+} = require('../dtos/producto.dto');
 
 router.get('/', async (req, res) => {
 	const { size } = req.query;
 	const limit = size || 10;
-	const administradores = await service.find(limit);
-	res.json(administradores);
+	const productos = await service.find(limit);
+	res.json(productos);
 });
 
 //STATUS CODE
 
 router.get(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getProductoId, 'params'),
 	async (req, res, next) => {
 		try {
 			const { id } = req.params;
-			const administradores = await service.findOne(id);
+			const producto = await service.findOne(id);
 			res.json({
 				success: true,
-				message: 'Administrador encontrado',
-				data: administradores,
+				message: 'Este es el producto encontrado',
+				data: producto,
 			});
 		} catch (error) {
 			next(error);
@@ -37,15 +37,15 @@ router.get(
 );
 router.post(
 	'/',
-	validatorHandler(createAdministradorDto, 'body'),
+	validatorHandler(createProductoDto, 'body'),
 	async (req, res, next) => {
 		const body = req.body;
 		try {
-			const newAdministrador = await service.create(body);
+			const newProducto = await service.create(body);
 			res.json({
 				success: true,
-				message: 'Administrador creado correctamente',
-				data: newAdministrador,
+				message: 'Producto creado correctamente',
+				data: newProducto,
 			});
 		} catch (error) {
 			next(error);
@@ -56,16 +56,16 @@ router.post(
 //MENSAJES DE ERROR
 router.patch(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getProductoId, 'params'),
+	validatorHandler(updateProductoDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administradores = await service.update(id, body);
+			const producto = await service.update(id, body);
 			res.json({
 				message: 'update',
-				data: administradores,
+				data: producto,
 				id,
 			});
 		} catch (error) {
@@ -78,16 +78,16 @@ router.patch(
 
 router.put(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getProductoId, 'params'),
+	validatorHandler(updateProductoDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administrador = await service.update(id, body);
+			const producto = await service.updateComplete(id, body);
 			res.json({
 				message: 'update total',
-				data: administrador,
+				data: producto,
 				id,
 			});
 		} catch (error) {
@@ -100,7 +100,7 @@ router.put(
 
 router.delete(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getProductoId, 'params'),
 	async (req, res) => {
 		const { id } = req.params;
 		const result = await service.delete(id);

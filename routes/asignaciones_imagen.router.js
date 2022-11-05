@@ -1,34 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const AdministradoresService = require('../services/administradores.service');
+const Asignacion_imagenService = require('../services/asignaciones_imagen.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const service = new AdministradoresService();
+const service = new Asignacion_imagenService();
 const {
-	createAdministradorDto,
-	updateAdministradorDto,
-	getAdministradorId,
-} = require('../dtos/administrador.dto');
+	createAsignacion_imagenDto,
+	updateAsignacion_imagenDto,
+	getAsignacion_imagenId,
+} = require('../dtos/asignacion_imagen.dto');
 
 router.get('/', async (req, res) => {
 	const { size } = req.query;
 	const limit = size || 10;
-	const administradores = await service.find(limit);
-	res.json(administradores);
+	const asignacion_imagen = await service.find(limit);
+	res.json(asignacion_imagen);
 });
 
 //STATUS CODE
 
 router.get(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getAsignacion_imagenId, 'params'),
 	async (req, res, next) => {
 		try {
 			const { id } = req.params;
-			const administradores = await service.findOne(id);
+			const asignacion_imagen = await service.findOne(id);
 			res.json({
 				success: true,
-				message: 'Administrador encontrado',
-				data: administradores,
+				message: 'Asignación de imagen encontrada',
+				data: asignacion_imagen,
 			});
 		} catch (error) {
 			next(error);
@@ -37,15 +37,15 @@ router.get(
 );
 router.post(
 	'/',
-	validatorHandler(createAdministradorDto, 'body'),
+	validatorHandler(createAsignacion_imagenDto, 'body'),
 	async (req, res, next) => {
 		const body = req.body;
 		try {
-			const newAdministrador = await service.create(body);
+			const newAsignacion_imagen = await service.create(body);
 			res.json({
 				success: true,
-				message: 'Administrador creado correctamente',
-				data: newAdministrador,
+				message: 'Producto creado correctamente',
+				data: newAsignacion_imagen,
 			});
 		} catch (error) {
 			next(error);
@@ -56,16 +56,16 @@ router.post(
 //MENSAJES DE ERROR
 router.patch(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getAsignacion_imagenId, 'params'),
+	validatorHandler(updateAsignacion_imagenDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administradores = await service.update(id, body);
+			const asignacion_imagen = await service.update(id, body);
 			res.json({
 				message: 'update',
-				data: administradores,
+				data: asignacion_imagen,
 				id,
 			});
 		} catch (error) {
@@ -78,16 +78,16 @@ router.patch(
 
 router.put(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getAsignacion_imagenId, 'params'),
+	validatorHandler(updateAsignacion_imagenDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administrador = await service.update(id, body);
+			const asignacion_imagen = await service.updateComplete(id, body);
 			res.json({
 				message: 'update total',
-				data: administrador,
+				data: asignacion_imagen,
 				id,
 			});
 		} catch (error) {
@@ -100,7 +100,7 @@ router.put(
 
 router.delete(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getAsignacion_imagenId, 'params'),
 	async (req, res) => {
 		const { id } = req.params;
 		const result = await service.delete(id);

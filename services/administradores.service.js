@@ -1,116 +1,74 @@
-const faker = require('faker');
 const boom = require('@hapi/boom');
-const { validateData, NOTFOUND, CONFLICT } = require('./../utils');
+const Model = require('../models/administrador.model');
 class adminService {
-  constructor() {
-    this.administradores = [];
-    this.generate();
-  }
-  generate() {
-    const limit = 100;
-    for (let index = 0; index < limit; index++) {
-    
-      this.administradores.push({
-        isActive: faker.datatype.boolean(),
-        id: faker.datatype.uuid(),
-        nombre: faker.name.firstName(),
-        fecha: faker.date.past(),
-        image: faker.image.imageUrl(),
-        correo: faker.internet.email(),
-        cedula: faker.datatype.uuid(),
-        contraseña: faker.internet.password(),
-      });
-     
-    }
-  }
+	constructor() {}
+	async create(data) {
+		const model = new Model(data);
+		await model.save();
+		return data;
+	}
 
-  //FAKER
-  async create(data) {
-    const newadmin = {
-      id: faker.datatype.uuid(),
-      ...data,
-    };
-    this.administradores.push(newadmin);
-    return newadmin;
-  }
-
-  find(limit) {
-    return new Promise((resolve, rejected) => {
-      var administradores = this.administradores.slice(0, limit);
-      if (administradores.length > 0) {
-        resolve(administradores);
-      } else {
-        rejected('');
-      }
-    });
-  }
-
-  findActiveadmins() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const activeadmins = this.administradores.filter((x) => x.isActive === true);
-        resolve(activeadmins);
-      }, 2000);
-    });
-  }
-
-  async findOne(id) {
-    //const name = this.getTotal(); PRUEBA DE ERROR DE TRY Y CATCH
-    const administrador = this.administradores.find((item) => item.id === id);
-    //NOT FOUND
-    validateData(administrador, NOTFOUND, 'No encontrado', (data) => !data);
-    validateData(
-        administrador,
-      CONFLICT,
-      'El administrador esta inactivo.',
-      (data) => data.isActive == false
-    );
-    return administrador;
-  }
-  async update(id, changes) {
-    const index = this.administradores.findIndex((item) => item.id === id);
-
-    if (index === -1) throw boom.notFound('Producto no encontrado');
-    //throw new Error('Product not found'); Forma tradicional
-
-    var currentadmin = this.administradores[index];
-    this.administradores[index] = {
-      ...currentadmin,
-      ...changes,
-    };
-    return this.administradores[index];
-  }
-  async updateComplete(id, changes) {
-    const index = this.administradores.findIndex((item) => item.id === id);
-
-    if (index === -1) throw boom.notFound('Producto no encontrado');
-    //throw new Error('Product not found'); Forma tradicional
-
-    var currentadmin = this.administradores[index];
-    this.administradores[index] = {
-      id: currentadmin.id,
-      ...changes,
-    };
-    return this.administradores[index];
-  }
-
-  async delete(id) {
-    const administrador = this.administradores.find((item) => item.id === id);
-    if(!administrador) {
-      return {
-        message: 'Administrador no encontrado para eliminar',
-      }
-    }
-    const index = this.administradores.findIndex((item) => item.id == id);
-    if (index === -1) {
-      if (index === -1) throw boom.notFound('Administrador no encontrado');
-    }
-    this.administradores.splice(index, 1);
-    return {
-      message: 'Administrador eliminado exitosamente',
-      id,
-    };
-  }
+	async find(limit) {
+		let response = {};
+		let adminsDB = await Model.find();
+		
+		//Obtenemos solo la cantidad deseada de registros
+		response['admins'] = adminsDB
+			? adminsDB.filter((item, index) => item && index < limit)
+			: adminsDB;
+		
+		return response;
+	}
+	
+	async findOne(id) {
+		const admin = await Model.findOne({
+			_id: id,
+		});
+		if(admin == undefined || admin == null)
+			throw boom.notFound('No se encontró el administrador');
+		else if (admin.length <= 0)
+			throw boom.notFound('No se encontró ningún registro');
+		return admin;
+	}
+	async update(id, changes) {
+		let admin = await Model.findOne({
+			_id: id,
+		});
+		let adminOriginal = {
+			isActive: admin.isActive,
+			cedula: admin.cedula,
+			nombre: admin.nombre,
+			fecha: admin.fecha,
+			correo: admin.correo,
+			contrasenia: admin.contrasenia,
+			image: admin.image,
+		};
+		const { isActive, cedula, nombre, fecha, correo, contrasenia, image } = changes;
+		admin.isActive = isActive;
+		admin.cedula = cedula;
+		admin.nombre = nombre;
+		admin.fecha = fecha;
+		admin.correo = correo;
+		admin.contrasenia = contrasenia;
+		admin.image = image;
+		admin.save();
+		
+		return {
+			original: adminOriginal,
+			actualizado: admin,
+		};
+	}
+	async delete(id) {
+		let admin = await Model.findOne({
+			_id: id,
+		});
+		const { deletedCount } = await Model.deleteOne({
+			_id: id,
+		});
+		if (deletedCount <= 0)
+			throw boom.notFound('El registro seleccionado no existe');
+		return admin;
+	}
 }
 
 module.exports = adminService;

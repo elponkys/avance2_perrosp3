@@ -21,24 +21,24 @@ app.use(
 	})
 );
 app.get('/', async (req, res) => {
-  let username = req.body.username;
-  let password = req.body.password;
-  if (username && password) {
-      dbo.collection("usuarios").collection().find({}, {"usuario": { $eq: username }},function(err, result) {
-          if (err) throw err;
-          if (result.length > 0) {
-              req.session.loggedin = true;
-              req.session.username = username;
-              res.redirect('/home');
-          } else {
-              res.send('Incorrect Username and/or Password!');
-          }
-          res.end();
-      });
-  } else {
-      res.send('Please enter Username and Password!');
-      res.end();
-  }
+	let username = req.body.username;
+	let password = req.body.password;
+	if (username && password) {
+			dbo.collection("usuarios").collection().find({}, {"usuario": { $eq: username }},function(err, result) {
+					if (err) throw err;
+					if (result.length > 0) {
+							req.session.loggedin = true;
+							req.session.username = username;
+							res.redirect('/home');
+					} else {
+							res.send('Incorrect Username and/or Password!');
+					}
+					res.end();
+			});
+	} else {
+			res.send('Please enter Username and Password!');
+			res.end();
+	}
 });
 routerApi(app);
 app.use(logErrors);

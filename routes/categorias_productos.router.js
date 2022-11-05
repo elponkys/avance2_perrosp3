@@ -1,34 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const AdministradoresService = require('../services/administradores.service');
+const Categorias_productoService = require('../services/categorias_productos.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const service = new AdministradoresService();
+const service = new Categorias_productoService();
 const {
-	createAdministradorDto,
-	updateAdministradorDto,
-	getAdministradorId,
-} = require('../dtos/administrador.dto');
+	createCategoria_productoDto,
+	updateCategoria_productoDto,
+	getCategoria_productoId,
+} = require('../dtos/categoria_producto.dto');
 
 router.get('/', async (req, res) => {
 	const { size } = req.query;
 	const limit = size || 10;
-	const administradores = await service.find(limit);
-	res.json(administradores);
+	const categorias_producto = await service.find(limit);
+	res.json(categorias_producto);
 });
 
 //STATUS CODE
 
 router.get(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getCategoria_productoId, 'params'),
 	async (req, res, next) => {
 		try {
 			const { id } = req.params;
-			const administradores = await service.findOne(id);
+			const categoria_producto = await service.findOne(id);
 			res.json({
 				success: true,
-				message: 'Administrador encontrado',
-				data: administradores,
+				message: 'Relación Categoría-Producto encontrada',
+				data: categoria_producto,
 			});
 		} catch (error) {
 			next(error);
@@ -37,15 +37,15 @@ router.get(
 );
 router.post(
 	'/',
-	validatorHandler(createAdministradorDto, 'body'),
+	validatorHandler(createCategoria_productoDto, 'body'),
 	async (req, res, next) => {
 		const body = req.body;
 		try {
-			const newAdministrador = await service.create(body);
+			const newCategoria_producto = await service.create(body);
 			res.json({
 				success: true,
-				message: 'Administrador creado correctamente',
-				data: newAdministrador,
+				message: 'Producto creado correctamente',
+				data: newCategoria_producto,
 			});
 		} catch (error) {
 			next(error);
@@ -56,16 +56,16 @@ router.post(
 //MENSAJES DE ERROR
 router.patch(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getCategoria_productoId, 'params'),
+	validatorHandler(updateCategoria_productoDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administradores = await service.update(id, body);
+			const categoria_producto = await service.update(id, body);
 			res.json({
 				message: 'update',
-				data: administradores,
+				data: categoria_producto,
 				id,
 			});
 		} catch (error) {
@@ -78,16 +78,16 @@ router.patch(
 
 router.put(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getCategoria_productoId, 'params'),
+	validatorHandler(updateCategoria_productoDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administrador = await service.update(id, body);
+			const categoria_producto = await service.updateComplete(id, body);
 			res.json({
 				message: 'update total',
-				data: administrador,
+				data: categoria_producto,
 				id,
 			});
 		} catch (error) {
@@ -100,7 +100,7 @@ router.put(
 
 router.delete(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getCategoria_productoId, 'params'),
 	async (req, res) => {
 		const { id } = req.params;
 		const result = await service.delete(id);

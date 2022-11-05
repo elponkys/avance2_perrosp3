@@ -6,7 +6,7 @@ const connect = async (url) => {
 		useNewUrlParser: true, //Compatibilidad de servidor
 	});
 	// eslint-disable-next-line no-console
-	console.log('SE HA CONECTADO A LA BD');
+	console.log('Conexión exitosa a la base de datos');
 };
 
 module.exports = connect;

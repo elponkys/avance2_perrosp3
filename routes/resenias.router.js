@@ -1,34 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const AdministradoresService = require('../services/administradores.service');
+const ReseniasService = require('../services/resenias.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const service = new AdministradoresService();
+const service = new ReseniasService();
 const {
-	createAdministradorDto,
-	updateAdministradorDto,
-	getAdministradorId,
-} = require('../dtos/administrador.dto');
+	createReseniaDto,
+	updateReseniaDto,
+	getReseniaId,
+} = require('../dtos/resenia.dto');
 
 router.get('/', async (req, res) => {
 	const { size } = req.query;
 	const limit = size || 10;
-	const administradores = await service.find(limit);
-	res.json(administradores);
+	const resenias = await service.find(limit);
+	res.json(resenias);
 });
 
 //STATUS CODE
 
 router.get(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getReseniaId, 'params'),
 	async (req, res, next) => {
 		try {
 			const { id } = req.params;
-			const administradores = await service.findOne(id);
+			const resenia = await service.findOne(id);
 			res.json({
 				success: true,
-				message: 'Administrador encontrado',
-				data: administradores,
+				message: 'Resenia encontrada',
+				data: resenia,
 			});
 		} catch (error) {
 			next(error);
@@ -37,15 +37,15 @@ router.get(
 );
 router.post(
 	'/',
-	validatorHandler(createAdministradorDto, 'body'),
+	validatorHandler(createReseniaDto, 'body'),
 	async (req, res, next) => {
 		const body = req.body;
 		try {
-			const newAdministrador = await service.create(body);
+			const newResenia = await service.create(body);
 			res.json({
 				success: true,
-				message: 'Administrador creado correctamente',
-				data: newAdministrador,
+				message: 'Producto creado correctamente',
+				data: newResenia,
 			});
 		} catch (error) {
 			next(error);
@@ -56,16 +56,16 @@ router.post(
 //MENSAJES DE ERROR
 router.patch(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getReseniaId, 'params'),
+	validatorHandler(updateReseniaDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administradores = await service.update(id, body);
+			const resenia = await service.update(id, body);
 			res.json({
 				message: 'update',
-				data: administradores,
+				data: resenia,
 				id,
 			});
 		} catch (error) {
@@ -78,16 +78,16 @@ router.patch(
 
 router.put(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
-	validatorHandler(updateAdministradorDto, 'body'),
+	validatorHandler(getReseniaId, 'params'),
+	validatorHandler(updateReseniaDto, 'body'),
 	async (req, res) => {
 		try {
 			const { id } = req.params;
 			const body = req.body;
-			const administrador = await service.update(id, body);
+			const resenia = await service.updateComplete(id, body);
 			res.json({
 				message: 'update total',
-				data: administrador,
+				data: resenia,
 				id,
 			});
 		} catch (error) {
@@ -100,7 +100,7 @@ router.put(
 
 router.delete(
 	'/:id',
-	validatorHandler(getAdministradorId, 'params'),
+	validatorHandler(getReseniaId, 'params'),
 	async (req, res) => {
 		const { id } = req.params;
 		const result = await service.delete(id);

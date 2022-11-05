@@ -1,28 +1,28 @@
 const express = require('express');
 const usersRouter = require('./usuarios.router');
-const servicesRouter = require('./servicio.router');
-const reviewsRouter = require('./reseñas.router');
-const productsRouter = require('./producto.router');
-const imagesRouter = require('./imagen.router');
+const servicesRouter = require('./servicios.router');
+const reviewsRouter = require('./resenias.router');
+const productsRouter = require('./productos.router');
+const imagesRouter = require('./imagenes.router');
 const categoriesRouter = require('./categorias.router');
-const categoriesServicesRouter = require('./categoria_servicio.router');
-const categoriesProductsRouter = require('./categoria_producto.router');
-const imageAssignationRouter = require('./asignacion_imagen.router');
-const adminRouter = require('./administradores.router');
+const categoriesServicesRouter = require('./categorias_servicios.router');
+const categoriesProductsRouter = require('./categorias_productos.router');
+const imageAssignationsRouter = require('./asignaciones_imagen.router');
+const adminsRouter = require('./administradores.router');
 
 function routerApi(app) {
-  const router = express.Router();
-  app.use('/api/v1', router);
-  router.use('/usuarios', usersRouter);
-  router.use('/servicio', servicesRouter);
-  router.use('/resenias', reviewsRouter);
-  router.use('/producto', productsRouter);
-  router.use('/imagen', imagesRouter);
-  router.use('/categorias', categoriesRouter);
-  router.use('/categoria_servicio', categoriesServicesRouter);
-  router.use('/categoria_producto', categoriesProductsRouter);
-  router.use('/asignacion_imagen', imageAssignationRouter);
-  router.use('/administradores', adminRouter);
+	const router = express.Router();
+	app.use('/api/v1', router);
+	router.use('/usuarios', usersRouter);
+	router.use('/servicios', servicesRouter);
+	router.use('/resenias', reviewsRouter);
+	router.use('/productos', productsRouter);
+	router.use('/imagenes', imagesRouter);
+	router.use('/categorias', categoriesRouter);
+	router.use('/categorias_servicios', categoriesServicesRouter);
+	router.use('/categorias_productos', categoriesProductsRouter);
+	router.use('/asignaciones_imagenes', imageAssignationsRouter);
+	router.use('/administradores', adminsRouter);
 }
 
 module.exports = routerApi;
