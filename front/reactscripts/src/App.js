@@ -15,7 +15,7 @@ import Botones from './components/PerfilUsuario/Botones';
 import InicioSesion from './components/InicioSesion/InicioSesion';
 import PublicacionesPerfil from "./components/PerfilUsuario/PublicacionesPerfil";
 
-
+import PublicacionyReseñas from "./components/PaginaPrincipal/PublicacionyReseñas";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './assets/css/Style.css';
@@ -30,6 +30,8 @@ function App() {
       <Router>
 
       <Routes>
+
+      <Route path ="/Publicaciones/Reseñas" element = {<><BarraNavegacion/><PublicacionyReseñas /></>}  > </Route>
 
         <Route path ="/Perfil/Publicaciones" element = {<><BarraNavegacion/><Encabezado /><Botones /><PublicacionesPerfil /></>}  > </Route>
 
