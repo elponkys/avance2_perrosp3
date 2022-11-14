@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,7 +14,14 @@ import Botones from './components/PerfilUsuario/Botones';
 import InicioSesion from './components/InicioSesion/InicioSesion';
 import PublicacionesPerfil from "./components/PerfilUsuario/PublicacionesPerfil";
 
+
 import PublicacionyReseñas from "./components/PaginaPrincipal/PublicacionyReseñas";
+
+import Usuarios from "./components/Usuarios/Usuarios";
+import CrearCuenta from "./components/CrearCuenta/NuevaCuenta";
+import PubliNueva from "./components/PubliNueva/PubliNueva";
+import SoliPubli from "./components/PubliNueva/SoliPubli";
+
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import './assets/css/Style.css';
@@ -34,11 +40,12 @@ function App() {
       <Route path ="/Publicaciones/Reseñas" element = {<><BarraNavegacion/><PublicacionyReseñas /></>}  > </Route>
 
         <Route path ="/Perfil/Publicaciones" element = {<><BarraNavegacion/><Encabezado /><Botones /><PublicacionesPerfil /></>}  > </Route>
-
         <Route path ="/PaginaPrincipal" element = {<><BarraNavegacion /><Publicaciones /></>}  > </Route>
-
         <Route path ="/Perfil" element = {<><BarraNavegacion/><Encabezado /><Botones /><Infousuario /></>} > </Route>
-
+        <Route path ="/NuevaCuenta" element = {<CrearCuenta/>}  > </Route>
+        <Route path ="/Usuarios" element = {<><BarraNavegacion/><Encabezado /><Usuarios/></>}  > </Route>
+        <Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva /></>}  > </Route>
+        <Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado /><SoliPubli /></>}  > </Route>
         <Route path ="/" element = {<InicioSesion/>}  > </Route>
         
 
