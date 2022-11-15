@@ -1,3 +1,5 @@
 {
-	"DBURL": "MONGOURI"
+	"DBURL": "MONGOURI",
+	"MULTIMEDIAURL": "https://cosasp3.blob.core.windows.net/",
+	"MULTIMEDIAPROFILEPICS": "contenedorp3/"
 }
