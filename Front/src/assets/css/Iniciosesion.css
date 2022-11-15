@@ -1,0 +1,181 @@
+a{
+	color: #0a4e5a;
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{ /*Cuando se le pase el raton encima*/
+	color: #FF9494;
+}
+
+body{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+}
+
+#btn_Buscar{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+	width: 15%;
+}
+
+#btn_Buscar > button{
+	width: fit-content;
+	height: 65%;
+	
+	border: none;
+	border-radius: 15px;
+	margin-bottom: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+	background: #FD6F96;
+	color: #FFEBA1;
+	
+	font-family: sans-serif;
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+button{
+	width: fit-content;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 20%;
+	
+	border: none;
+	border-radius: 15px;
+	outline: none;
+	margin-bottom: 15px;
+	
+	background: #FD6F96;
+	color: #FFEBA1;
+	
+	font-family: Copperplate;
+	font-size: 20px;
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.Contenedor-base{
+	width: 100vw;
+	height: 100vh;
+	background-color: #FFD1D1;
+}
+
+footer {
+	font-family: sans-serif;
+	font-weight:bolder;
+	
+	font-size: 90%;
+	font-stretch: condensed;
+	color: #FFEBA1;
+	
+	display: flex;
+	justify-content: space-between;
+	
+	width: 100%;
+	
+	margin-top: auto;
+	
+	background-color: #FF9494;
+}
+
+.Formulario{
+	display: flex;
+	width: 80%;
+	height: 50%;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 0px;
+}
+
+h1{
+	color: #313131;
+	font-family: Copperplate; 
+	font-weight: bold;	
+}
+
+input{
+	width: 100%;
+	height: 100%;
+	
+	border-radius: 8px;
+	border-color: white;
+	
+	background: white;
+	cursor: text;
+}
+
+label{
+	font-weight: bold;
+	
+	display: block;
+	
+	color: #AAAAAA;
+}
+
+.Login{
+	display: flex;
+	
+	flex-direction: column;
+	
+	justify-content: center;
+	align-items: center;
+	
+	background: url(../imagenes/Huella.png) no-repeat center top;
+	background-size: cover;
+	
+	font-family: Copperplate;
+	
+	margin: 1rem;
+	padding: 1rem;
+	border: 8px solid #6F69AC;
+	
+	width: 40%;
+	height: 65%;
+	
+	min-width: max-content;
+	min-height: max-content;
+	
+	border-radius: 15px;
+	border-color: #FF9494;
+}
+
+
+.mainContenedor{
+	display: flex;
+	
+	flex-direction: column;
+	
+	justify-content: center;
+	align-items: center;
+	padding-top: 3%;
+	
+	width: 100%;
+	height: 100%;
+	
+	background-color: #FFD1D1;
+}
+
+.btnLog{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	
+	height: 100%;
+	width: 15%;
+}
+
+.btn-danger{
+	border-color: #FF9494;
+	background-color: #FF9494;
+	margin-right: 10px;
+}

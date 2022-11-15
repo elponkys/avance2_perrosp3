@@ -1,0 +1,86 @@
+#Encabezado{
+	text-align: center;
+	height: 30%;
+	padding: 5%;
+	
+	background-image: url("https://images.pexels.com/photos/10293290/pexels-photo-10293290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+	background-size: cover;
+}
+
+#Avatar{
+	width: 10%;
+	height: 10%;
+	border-radius: 50%;
+}
+
+#Username{
+	font-size: 200%;
+	margin-top: 1%;
+}
+
+#Informacion_Usuario{
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	
+	background-color:#FFD1D1;
+}
+
+.Elemento_Info{
+	display: inline-block;
+	margin: 2%;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{ /*Cuando se le pase el raton encima*/
+	color: #FF9494;
+}
+
+body{
+	background-color: #FF9494;
+}
+
+#Servicios_Usuario{
+	list-style: none;
+	text-align: center;
+	padding: 0;
+}
+
+.Elemento_Servicio{
+	margin: 2%;
+}
+
+#Titulo_Servicios{
+	text-align: center;
+}
+
+#Servicios{
+	background-color:  white;
+	width: 80%;
+
+	border-radius: 15px;
+}
+
+#Contenedor{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	flex-direction: column;
+	
+	background-color: white;
+}
+
+#Botones{
+	margin-top: 1%;
+}
+
+.EncabezadoW{
+	background-color: white;
+}
+
+/* BARRA DE NAVEGACION */
