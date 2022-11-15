@@ -217,6 +217,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,node,linux,macos,dotenv
-
-# Mi archivo con la uri de MongoDB
-consts.json
