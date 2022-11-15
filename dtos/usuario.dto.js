@@ -7,7 +7,11 @@ const nombre = Joi.string().min(3).max(50);
 const fecha = Joi.string().min(8).max(10);
 const correo = Joi.string().min(6).max(50);
 const contrasenia = Joi.string().min(3).max(50);
-const image = Joi.string();
+const image = Joi.object().keys({
+	name: Joi.string(),
+	path: Joi.string(),
+	extention: Joi.string().max(13)
+  });
 
 const createUsuarioDto = Joi.object({
 	isActive: isActive.required(),

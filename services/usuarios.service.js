@@ -10,18 +10,31 @@ class usuarioService {
 		return data;
 	}
 	
-	async find(limit) {
+	async findxd() {
 		let response = {};
 		let usersDB = await Model.find();
 		
 		//Obtenemos solo la cantidad deseada de registros
-		response['users'] = usersDB
-			? usersDB.filter((item, index) => item && index < limit)
-			: usersDB;
+		response['users'] = usersDB;
 		
 		return response;
 	}
+
+	async find(filter) {
+
+		let users = await Model.find(filter);
 	
+		if (users == undefined || users == null)
+		  throw boom.notFound(errNotFound);
+		if (users.length <= 0)
+		  throw boom.notFound(errEmpty);
+	
+		users = users.filter((item) => item);
+	
+		return users;
+	
+	  }
+
 	async findOne(id) {
 		const usuario = await Model.findOne({
 			_id: id,

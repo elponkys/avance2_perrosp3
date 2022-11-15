@@ -1,8 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,node,linux,macos,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,node,linux,macos,dotenv
 
-### dotenv ###
-.env
+
 
 ### Linux ###
 *~
@@ -218,3 +217,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,node,linux,macos,dotenv
+
+# Mi archivo con la uri de MongoDB
+consts.json

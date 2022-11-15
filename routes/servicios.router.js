@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const ServiciosService = require('../services/servicios.service');
 const validatorHandler = require('../middlewares/validator.handler');
+const faker = require('faker');
+const { MULTIMEDIAURL, MULTIMEDIAPROFILEPICS } = require('../consts.json');
+const azureStorage = require('azure-storage');
+const blobService = azureStorage.createBlobService();
+const container = MULTIMEDIAPROFILEPICS.split('/')[0];
+const streamifier = require('streamifier');
 const service = new ServiciosService();
 const {
 	createServicioDto,
@@ -39,14 +45,62 @@ router.post(
 	'/',
 	validatorHandler(createServicioDto, 'body'),
 	async (req, res, next) => {
-		const body = req.body;
 		try {
+			const body = req.body;
+			const { multimedia } = body;
+			if (multimedia) {
+				let multis = []
+				let index = 0;
+				for (const multi of multimedia) {
+		  
+				  let { name, path, extention } = multi;
+		  
+				  name = faker.datatype.uuid() + name + "." + extention;
+		  
+				  let buffer = new Buffer(path, 'base64')
+				  var stream = streamifier.createReadStream(buffer);
+				  await blobService.createBlockBlobFromStream(container, name, stream, buffer.byteLength, {
+					contentType: extention
+				  }, async function (err) {
+					if (err) {
+		  
+					  res.json({
+						'success': false,
+						'message': err
+					  });
+		  
+					} else {
+		  
+					  const fileURL = `${MULTIMEDIAURL}${MULTIMEDIAPROFILEPICS}${name}`;
+					  var obj = {};
+					  obj['name'] = name;
+					  obj['extention'] = extention;
+					  obj['path'] = fileURL;
+					  multis[`${index}`] = obj;
+					  if (index === multimedia.length - 1) {
+						body['multimedia'] = multis;
+						const newServicio = await service.create(body);
+						res.json({
+						  'success': true,
+						  'message': "El usuario se ha creado con exito",
+						  'Data': newServicio
+						});
+					  }
+					  index++;
+					}
+		  
+				  })
+		  
+				};
+		  
+			  }else {
 			const newServicio = await service.create(body);
 			res.json({
 				success: true,
 				message: 'Producto creado correctamente',
 				data: newServicio,
 			});
+		}
 		} catch (error) {
 			next(error);
 		}

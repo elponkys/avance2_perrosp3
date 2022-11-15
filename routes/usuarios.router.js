@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const UsuariosService = require('../services/usuarios.service');
+const faker = require('faker');
 const validatorHandler = require('../middlewares/validator.handler');
 const service = new UsuariosService();
+const { MULTIMEDIAURL, MULTIMEDIAPROFILEPICS } = require('../consts.json');
+const azureStorage = require('azure-storage');
+const blobService = azureStorage.createBlobService();
+const container = MULTIMEDIAPROFILEPICS.split('/')[0];
 const {
 	createUsuarioDto,
 	updateUsuarioDto,
@@ -10,10 +15,33 @@ const {
 } = require('../dtos/usuario.dto');
 
 router.get('/', async (req, res) => {
-	const { size } = req.query;
-	const limit = size || 10;
-	const usuarios = await service.find(limit);
-	res.json(usuarios);
+	try {
+
+		const {e, p } = req.query;
+		const filter = {};
+	
+		if (e) {
+		  Object.assign(filter, {
+			correo: e
+		  })
+		}
+	
+		if (p) {
+		  Object.assign(filter, {
+			contrasenia: p
+		  })
+		}
+	
+		const users = await service.find(filter)
+		res.json({
+		  'success': true,
+		  'message': 'Estos son los usuarios encontrados',
+		  'Data': users
+		});
+	
+	  } catch (error) {
+		console.log(error);
+	  }
 });
 
 //STATUS CODE
@@ -39,17 +67,59 @@ router.post(
 	'/',
 	validatorHandler(createUsuarioDto, 'body'),
 	async (req, res, next) => {
-		const body = req.body;
+
 		try {
-			const newUsuario = await service.create(body);
-			res.json({
-				success: true,
-				message: 'Usuario creado correctamente',
-				data: newUsuario,
-			});
-		} catch (error) {
+			const body = req.body;
+			const { image } = body;
+
+			var name = null, path = null, extention = null;
+			if (image) {
+
+				({ name, path, extention } = image);
+		  
+				name = faker.datatype.uuid() + name + "." + extention;
+		  
+				let buffer = new Buffer(path, 'base64')
+				await blobService.createBlockBlobFromText(container, name, buffer, {
+				  contentType: extention
+				}, async function (err) {
+				  if (err) {
+		  
+					res.json({
+					  'success': false,
+					  'message': err
+					});
+		  
+				  } else {
+		  
+					const fileURL =`${MULTIMEDIAURL}${MULTIMEDIAPROFILEPICS}${name}`;
+		  
+					body["image"]["path"] = fileURL;
+					const user = await service.create(body);
+		  
+					res.json({
+					  'success': true,
+					  'message': "El usuario se ha creado con exito",
+					  'Data': user
+					});
+		  
+				  }
+		  
+				})
+	  
+			  } else {
+				const user = await service.create(body);
+		  
+				res.json({
+				  'success': true,
+				  'message': "El usuario se ha creado con exito",
+				  'Data': user
+				});
+			  }	  
+			}catch (error) {
 			next(error);
 		}
+	
 	}
 );
 
