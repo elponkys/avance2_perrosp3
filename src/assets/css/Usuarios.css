@@ -1,0 +1,29 @@
+body {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, #FF9494, #FFE3E1);
+}
+.form-inner{
+	align-items: center;
+	height: fit-content;
+	width: 300px;
+	background-color: #FF9494;
+	padding: 10px;
+	border-radius: 15px;
+	margin: 25px;
+}
+
+.butn{
+	background-color:  rgb(181, 205, 149)
+}
+.butn2{
+	background-color:  rgb(163, 99, 99)
+}
+
+.contenedor{
+	color: black;
+	height: fit-content;
+} 
+.texto{
+	text-align: center;
+}
