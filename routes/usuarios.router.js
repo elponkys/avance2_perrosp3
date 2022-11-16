@@ -17,7 +17,7 @@ const {
 router.get('/', async (req, res) => {
 	try {
 
-		const {e, p } = req.query;
+		const { e, p } = req.query;
 		const filter = {};
 	
 		if (e) {

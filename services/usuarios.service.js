@@ -25,9 +25,9 @@ class usuarioService {
 		let users = await Model.find(filter);
 	
 		if (users == undefined || users == null)
-		  throw boom.notFound(errNotFound);
+		  throw boom.notFound("errNotFound");
 		if (users.length <= 0)
-		  throw boom.notFound(errEmpty);
+		  throw boom.notFound("errEmpty");
 	
 		users = users.filter((item) => item);
 	
