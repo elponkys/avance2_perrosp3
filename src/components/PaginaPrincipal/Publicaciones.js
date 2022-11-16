@@ -11,47 +11,54 @@ class Publicaciones extends React.Component{
 						<button id="Añadir_Publicacion" type="button" className='btn btn-danger'>Añadir una publicacion</button>
 					</Link>
 					
-					<Link to = "/Perfil">
+					<Link to = "/Publicaciones/Resenias">
 						<a className='Publicacion' href="#">
 							<div className='Nombre_Usuario'>
 								<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="alt" id="Img_perfil_publicacion"/>
 								Nombre
 							</div>
-							<div className='Titulo_Publicacion'>Titulo</div>
+							<div className='Titulo_Publicacion'>
+								Titulo
+							</div>
 							<div>
-							Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.
+								Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.
 							</div>
 							<div className='Contacto'>8119047599</div>
 						</a>
 					</Link>
 					
-					<Link to = "/Perfil">
+					<Link to = "/Publicaciones/Resenias">
 						<a className='Publicacion' href="#">
 							<div className='Nombre_Usuario'>
 								<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="alt" id="Img_perfil_publicacion"/>
 								Nombre
 							</div>
-							<div className='Titulo_Publicacion'>Titulo</div>
+							<div className='Titulo_Publicacion'>
+								Titulo
+							</div>
 							<div>
-							Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.
+								Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.
 							</div>
 							<div className='Contacto'>8119047599</div>
 						</a>
 					</Link>
 					
-					<Link to = "/Perfil">
+					<Link to = "/Publicaciones/Resenias">
 						<a className='Publicacion' href="#">
 							<div className='Nombre_Usuario'>
 								<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="alt" id="Img_perfil_publicacion"/>
 								Nombre
 							</div>
-							<div className='Titulo_Publicacion'>Titulo</div>
+							<div className='Titulo_Publicacion'>
+								Titulo
+							</div>
 							<div>
-							Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.
+								Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.
 							</div>
 							<div className='Contacto'>8119047599</div>
 						</a>
 					</Link>
+					
 				</div>
 			</div>
 		);

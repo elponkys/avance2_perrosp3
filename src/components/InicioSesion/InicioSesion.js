@@ -25,7 +25,6 @@ export function InicioSesion() {
 			
 			return;
 		}
-		
 		const cookie = new Cookies();
 		const accessToken = cookie.get(constants.CookieAccessToken);
 		const response = await fetch(
@@ -49,6 +48,8 @@ export function InicioSesion() {
 			$('.error').addClass('bounce');
 			$('.error').slideDown('fast');
 			
+			alert('no papu');
+			
 			setTimeout(function () {
 				$('.error').removeClass('bounce');
 			}, 1000);
@@ -67,7 +68,7 @@ export function InicioSesion() {
 						className="form-control"
 						type="text"
 						id="usernameIt"
-						placeholder="Nombre de usuario:"
+						placeholder="Correo"
 					></input>
 					<br></br>
 					
@@ -75,16 +76,14 @@ export function InicioSesion() {
 						className="form-control"
 						type="password"
 						id="claveIt"
-						placeholder="Contraseña:"
+						placeholder="Contraseña"
 					></input>
 					
 					<br></br>
 					<button type="submit" className="btn btn-danger" id="btnLog">
-						aaaaaaa
-					</button>
-					<a href="" type="submit" className="btn btn-danger" id="btnLog">
 						INGRESAR
-					</a>
+					</button>
+					
 				</form>
 				
 				<br></br>

@@ -13,6 +13,7 @@ import Infousuario from './components/PerfilUsuario/Infousuario';
 import Botones from './components/PerfilUsuario/Botones';
 import InicioSesion from './components/InicioSesion/InicioSesion';
 import PublicacionesPerfil from "./components/PerfilUsuario/PublicacionesPerfil";
+import PublicacionyResenias from "./components/PaginaPrincipal/PublicacionyResenias";
 import Usuarios from "./components/Usuarios/Usuarios";
 import CrearCuenta from "./components/CrearCuenta/NuevaCuenta";
 import PubliNueva from "./components/PubliNueva/PubliNueva";
@@ -29,14 +30,15 @@ function App() {
 			
 			<Routes>
 			
-				<Route path ="/Perfil/Publicaciones" element = {<><BarraNavegacion/><Encabezado /><Botones /><PublicacionesPerfil /></>}	> </Route>
-				<Route path ="/PaginaPrincipal" element = {<><BarraNavegacion /><Publicaciones /></>}	> </Route>
-				<Route path ="/Perfil" element = {<><BarraNavegacion/><Encabezado /><Botones /><Infousuario /></>} > </Route>
-				<Route path ="/NuevaCuenta" element = {<CrearCuenta/>}	> </Route>
-				<Route path ="/Usuarios" element = {<><BarraNavegacion/><Encabezado /><Usuarios/></>}	> </Route>
-				<Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva /></>}	> </Route>
-				<Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado /><SoliPubli /></>}	> </Route>
-				<Route path ="/" element = {<InicioSesion/>}	> </Route>
+				<Route path ="/Publicaciones/Resenias" element = {<><BarraNavegacion/><PublicacionyResenias/></>}> </Route>
+				<Route path ="/Perfil/Publicaciones" element = {<><BarraNavegacion/><Encabezado/><Botones/><PublicacionesPerfil/></>}> </Route>
+				<Route path ="/PaginaPrincipal" element = {<><BarraNavegacion/><Publicaciones/></>}> </Route>
+				<Route path ="/Perfil" element = {<><BarraNavegacion/><Encabezado/><Botones/><Infousuario/></>}> </Route>
+				<Route path ="/NuevaCuenta" element = {<CrearCuenta/>}> </Route>
+				<Route path ="/Usuarios" element = {<><BarraNavegacion/><Encabezado/><Usuarios/></>}> </Route>
+				<Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva/></>}> </Route>
+				<Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado/><SoliPubli/></>}> </Route>
+				<Route path ="/" element = {<InicioSesion/>}> </Route>
 				
 			</Routes>
 			
