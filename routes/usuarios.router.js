@@ -16,27 +16,26 @@ const {
 
 router.get('/', async (req, res) => {
 	try {
-
 		const { e, p } = req.query;
 		const filter = {};
-	
+		
 		if (e) {
-		  Object.assign(filter, {
-			correo: e
-		  })
+			Object.assign(filter, {
+				correo: e
+			})
 		}
-	
+		
 		if (p) {
-		  Object.assign(filter, {
-			contrasenia: p
-		  })
+			Object.assign(filter, {
+				contrasenia: p
+			})
 		}
-	
+		
 		const users = await service.find(filter)
 		res.json({
-		  'success': true,
-		  'message': 'Estos son los usuarios encontrados',
-		  'Data': users
+			'success': true,
+			'message': 'Estos son los usuarios encontrados',
+			'Data': users
 		});
 	
 	  } catch (error) {

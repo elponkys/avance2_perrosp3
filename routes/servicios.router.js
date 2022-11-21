@@ -16,10 +16,25 @@ const {
 } = require('../dtos/servicio.dto');
 
 router.get('/', async (req, res) => {
-	const { size } = req.query;
-	const limit = size || 10;
-	const servicios = await service.find(limit);
-	res.json(servicios);
+	try{
+		const { u } = req.query;
+		const filter = {};
+		
+		if (u) {
+			Object.assign(filter, {
+				id_usuario: u
+			})
+		}
+		
+		const servicios = await service.find(filter);
+		res.json({
+			'success': true,
+			'message': 'Estos son los servicios encontrados',
+			'data': servicios
+		});
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 //STATUS CODE

@@ -9,6 +9,7 @@ const userSchema = new Schema({
 	fecha: String,
 	correo: String,
 	contrasenia: String,
+	servicio: String,
 	image: Object,
 });
 const model = mongoose.model('usuario', userSchema);

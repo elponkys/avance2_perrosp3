@@ -21,19 +21,19 @@ class usuarioService {
 	}
 
 	async find(filter) {
-
+		
 		let users = await Model.find(filter);
-	
+		
 		if (users == undefined || users == null)
-		  throw boom.notFound("errNotFound");
+			throw boom.notFound("errNotFound");
 		if (users.length <= 0)
-		  throw boom.notFound("errEmpty");
-	
+			throw boom.notFound("errEmpty");
+		
 		users = users.filter((item) => item);
-	
+		
 		return users;
-	
-	  }
+		
+	}
 
 	async findOne(id) {
 		const usuario = await Model.findOne({
@@ -56,14 +56,16 @@ class usuarioService {
 			fecha: user.fecha,
 			correo: user.correo,
 			contrasenia: user.contrasenia,
+			servicio: user.servicio,
 			image: user.image,
 		};
-		const { isActive, nombre, fecha, correo, contrasenia, image } = changes;
+		const { isActive, nombre, fecha, correo, contrasenia, image, servicio } = changes;
 		user.isActive = isActive;
 		user.nombre = nombre;
 		user.fecha = fecha;
 		user.correo = correo;
 		user.contrasenia = contrasenia;
+		user.servicio = servicio;
 		user.image = image;
 		user.save();
 		

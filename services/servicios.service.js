@@ -8,15 +8,16 @@ class servicioService {
 		return data;
 	}
 	
-	async find(limit) {
-		let response = {};
-		let servicesDB = await Model.find();
+	async find(filter) {
+		let servicesDB = await Model.find(filter).sort({ fecha : 1 });
 		
-		response['services'] = servicesDB
-			? servicesDB.filter((item, index) => item && index < limit)
-			: servicesDB;
+		if (servicesDB == undefined || servicesDB == null)
+			throw boom.notFound("errNotFound");
+		if (servicesDB.length <= 0)
+			throw boom.notFound("errEmpty");
 		
-		return response;
+		servicesDB = servicesDB.filter((item) => item);
+		return servicesDB;
 	}
 	
 	async findOne(id) {
