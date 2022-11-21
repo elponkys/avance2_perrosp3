@@ -38,17 +38,13 @@ export function InicioSesion() {
 		if (respJson.success) {
 			cookies.set(constants.CookieUserID, respJson.Data[0]._id, { path: '/' });
 			cookies.set(constants.CookieIsLogedIn, true, { path: '/' });
-			
-			alert('asies');
-			navigate('/PaginaPrincipal');
+			navigate('/');
 			return;
 		} else {
 			//setLoading(false)
 			//setError('Verifique que las credenciales sean correctas.');
 			$('.error').addClass('bounce');
 			$('.error').slideDown('fast');
-			
-			alert('no papu');
 			
 			setTimeout(function () {
 				$('.error').removeClass('bounce');

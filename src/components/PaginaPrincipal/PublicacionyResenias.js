@@ -1,52 +1,65 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Publicacion } from './Publicacion';
+import constants from './../../constants.json';
+import { Link, useLocation } from 'react-router-dom';
+import $ from 'jquery';
 import './../../assets/css/paginaprincipal.css';
 import './../../assets/css/Resenias.css';
-import { Link } from 'react-router-dom';
 
-class PublicacionyResenias extends React.Component{
-	render(){
-		return(
-			<div className='Publicaciones_Recientes'>
-				<div className='Publicaciones'>
-					<Link to = "/Perfil">
-						<a className='Publicacion' href="#">
-							<div className='Nombre_Usuario'>
-								<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" alt="alt" id="Img_perfil_publicacion"/>
-								Nombre
+export function PublicacionyResenias(){
+	const location = useLocation();
+	const [state, setState] = useState(false)
+	const [service, setService] = useState({});
+	
+	useEffect(() => {
+		async function preLoad(){
+			const response = await fetch(`${constants.API_URL}/servicios/${location.pathname.split('/')[3]}`);
+			const selectedService = await response.json();
+			if(selectedService.success){
+				setService(selectedService.data);
+				setState(true);
+			}
+		}
+		preLoad();
+	}, []);
+	
+	return(
+		<>
+		<div className='Publicaciones_Recientes'>
+			<div className='Publicaciones'>
+				{state ? (<>
+				<Link to = {`/Perfil/${service.id_usuario}`}>
+					<Publicacion data={service} />
+				</Link>
+				</>):(<></>)}
+			</div>
+			
+			<div className='Reseñas'>
+				<main className='contenedor'>
+					<section className='contenedor-agg-com'>
+						<div className='imagen-usuario'>
+							<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png"></img>
+						</div>
+						
+						<div className='input-com'>
+							<input id='nuevoComentario' type={"Text"} placeholder ="Nuevo Comentario..."></input>
+							<div className='btn-agg'>
+								<button onClick={nComentario}>Comentar</button>
 							</div>
-							<div className='Titulo_Publicacion'>Titulo</div>
-							<div>Lorem ipsum dolor sit amet consectetur adipiscing elit neque porttitor curae, ut varius mauris mi congue metus blandit class. Fermentum nec et mollis enim metus curabitur donec pretium, libero proin in neque bibendum sapien blandit eleifend, eget at ad quam fusce porttitor vel. Sociosqu lectus torquent mi himenaeos donec vulputate primis, habitasse penatibus laoreet pretium ligula dis nunc, taciti rhoncus nullam at ut tellus.</div>
-							<div className='Contacto'>8119047599</div>
-						</a>
-					</Link>
-				</div>
-				
-				<div className='Reseñas'>
-					<main className='contenedor'>
-						<section className='contenedor-agg-com'>
-							<div className='imagen-usuario'>
-								<img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png"></img>
-							</div>
-							
-							<div className='input-com'>
-								<input id='nuevoComentario' type={"Text"} placeholder ="Nuevo Comentario..."></input>
-								<div className='btn-agg'>
-									<button>Comentar</button>
-								</div>
-							</div>
-						</section>
-					</main>
-					<ul id="comentarios" class="contenedor-2">
+						</div>
+					</section>
+				</main>
+				<ul id="comentarios" class="contenedor-2">
 				</ul>
 			</div>
 		</div>
-		);
-	}
+		</>
+	);
 }
 
 function nComentario() {
 	let li = document.createElement("li");
-	let valoringresado = document.getElementById("nuevoComentario").ariaValueMax;
+	let valoringresado = $('#nuevoComentario').val(); //document.getElementById("nuevoComentario").ariaValueMax;
 	let text = document.createTextNode(valoringresado);
 	li.appendChild(text);
 	if(valoringresado === ''){

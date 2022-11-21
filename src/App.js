@@ -25,24 +25,21 @@ import './assets/css/Style.css';
 function App() {
 	return (
 		<div className="Contenedor-base">
-		
+			
 			<Router>
-			
-			<Routes>
-			
-				<Route path ="/Publicaciones/Resenias" element = {<><BarraNavegacion/><PublicacionyResenias/></>}> </Route>
-				<Route path ="/Perfil/Publicaciones" element = {<><BarraNavegacion/><Encabezado/><Botones/><PublicacionesPerfil/></>}> </Route>
-				<Route path ="/PaginaPrincipal" element = {<><BarraNavegacion/><Publicaciones/></>}> </Route>
-				<Route path ="/Perfil" element = {<><BarraNavegacion/><Encabezado/><Botones/><Infousuario/></>}> </Route>
-				<Route path ="/NuevaCuenta" element = {<CrearCuenta/>}> </Route>
-				<Route path ="/Usuarios" element = {<><BarraNavegacion/><Encabezado/><Usuarios/></>}> </Route>
-				<Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva/></>}> </Route>
-				<Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado/><SoliPubli/></>}> </Route>
-				<Route path ="/" element = {<InicioSesion/>}> </Route>
-				
-			</Routes>
-			
+				<Routes>
+					<Route path ="/Publicaciones/Resenias/:id" element = {<><BarraNavegacion/><PublicacionyResenias/></>}> </Route>
+					<Route path ="/Perfil/:userID/Publicaciones" element = {<><BarraNavegacion/><Encabezado/><Botones/><PublicacionesPerfil/></>}> </Route>
+					<Route path ="/" element = {<><BarraNavegacion/><Publicaciones/></>}> </Route>
+					<Route path ="/Perfil/:userID" element = {<><BarraNavegacion/><Encabezado/><Botones/><Infousuario/></>}> </Route>
+					<Route path ="/NuevaCuenta" element = {<CrearCuenta/>}> </Route>
+					<Route path ="/Usuarios" element = {<><BarraNavegacion/><Encabezado/><Usuarios/></>}> </Route>
+					<Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva/></>}> </Route>
+					<Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado/><SoliPubli/></>}> </Route>
+					<Route path ="/InicioSesion" element = {<InicioSesion/>}> </Route>
+				</Routes>
 			</Router>
+			
 			<footer>
 				<div> 2021 Todos los derechos reservados </div>
 				<div> Contacto: Tel:8118047600 Correo:Mascotas@gmail.com </div>

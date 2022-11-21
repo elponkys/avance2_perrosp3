@@ -62,6 +62,7 @@ export function NuevaCuenta() {
 		const name = $('#nombre').val();
 		const email = $('#correo').val();
 		const contra = $('#psw').val();
+		const servicio = $('#servicio').val();
 		
 		const validName = /^[a-zA-Z ]{1,}$/;
 		const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -105,6 +106,7 @@ export function NuevaCuenta() {
 					fecha: getActualDate(),
 					correo: email,
 					contrasenia: contra,
+					servicio: servicio,
 					image: profilePic,
 				};
 				
@@ -179,6 +181,7 @@ export function NuevaCuenta() {
 								<input
 									type="text"
 									placeholder="Servicios"
+									id="servicio"
 									name="servicios"
 									required
 								/>
