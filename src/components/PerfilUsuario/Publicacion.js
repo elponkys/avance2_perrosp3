@@ -15,7 +15,7 @@ export function Publicacion(props){
 			<a className='Publicacion'>
 				<div className='Nombre_Usuario'>{data.nombre}</div>
 				<div>{data.detalles}</div>
-				<div className='Contacto'>{data.numero}</div>
+				<div className='Contacto'>${data.precio}</div>
 			</a>
 		</Link>
 		</>

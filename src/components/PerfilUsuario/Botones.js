@@ -29,7 +29,7 @@ export function Botones(){
 					</>
 				) : (
 					<>
-					<Link to = '/Usuarios'>
+					<Link to = {`/Usuarios/${location.pathname.split('/')[2]}`}>
 						<button type = "submit" className='btn btn-danger'>
 							Solicitudes de Usuarios
 						</button> 

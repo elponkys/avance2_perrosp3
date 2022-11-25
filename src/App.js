@@ -34,7 +34,7 @@ function App() {
 					<Route path ="/" element = {<><BarraNavegacion/><Publicaciones/></>}> </Route>
 					<Route path ="/Perfil/:userID" element = {<><BarraNavegacion/><Encabezado/><Botones/><Infousuario/></>}> </Route>
 					<Route path ="/NuevaCuenta" element = {<CrearCuenta/>}> </Route>
-					<Route path ="/Usuarios" element = {<><BarraNavegacion/><Encabezado/><Usuarios/></>}> </Route>
+					<Route path ="/Usuarios/:userID" element = {<><BarraNavegacion/><Encabezado/><Usuarios/></>}> </Route>
 					<Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva/></>}> </Route>
 					<Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado/><SoliPubli/></>}> </Route>
 					<Route path ="/InicioSesion" element = {<InicioSesion/>}> </Route>

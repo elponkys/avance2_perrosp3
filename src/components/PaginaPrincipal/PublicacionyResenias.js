@@ -25,10 +25,12 @@ export function PublicacionyResenias(){
 			const selectedService = await response.json();
 			if(selectedService.success){
 				setService(selectedService.data);
-				const responseUserLogged = await fetch(`${constants.API_URL}/usuarios/${userID}`);
-				const userLoggedDB = await responseUserLogged.json();
-				if(userLoggedDB.success){
-					setUserLogged(userLoggedDB.data);
+				if (userID) {
+					const responseUserLogged = await fetch(`${constants.API_URL}/usuarios/${userID}`);
+					const userLoggedDB = await responseUserLogged.json();
+					if(userLoggedDB.success){
+						setUserLogged(userLoggedDB.data);
+					}
 				}
 				const responseReviews = await fetch(`${constants.API_URL}/resenias?p=${location.pathname.split('/')[3]}`);
 				const revierwsDB = await responseReviews.json();
@@ -73,12 +75,16 @@ export function PublicacionyResenias(){
 	}
 	
 	const nComentario = async () => {
-		let Comentario = $('#nuevoComentario').val(); //document.getElementById("nuevoComentario").ariaValueMax;
+		let newComment = $('#nuevoComentario').val();
+		if(newComment.length < 10){
+			alert('Comentario demasiado corto (debe tener mínimo 10 caracteres)');
+			return;
+		}
 		const body = {
 			id_usuario: userID,
 			id_producto: location.pathname.split('/')[3],
 			fecha: getActualDate(),
-			resenia: Comentario,
+			resenia: newComment,
 		};
 		const response = await fetch(`${constants.API_URL}/resenias/`, {
 			method: 'POST',

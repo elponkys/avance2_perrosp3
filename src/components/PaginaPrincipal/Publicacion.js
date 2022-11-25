@@ -30,9 +30,11 @@ export function Publicacion(props){
 				<div className='Titulo_Publicacion'>{props.data.nombre}</div>
 				<div>{props.data.detalles}</div>
 				<div className='Contacto'>{props.data.numero}</div>
+				<div>{props.data.pais}, {props.data.estado}, {props.data.ciudad}</div>
 				{props.data.multimedia.map((image, index) => (
 					<img src={image.path} alt={image.name}/>
 				))}
+				<div className='Contacto'>${props.data.precio}</div>
 			</a>
 		</>):(<></>)}
 		</>
