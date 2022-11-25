@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 //import "bootstrap/dist/css/bootstrap.min.css";
 import './../../assets/css/Iniciosesion.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ export function InicioSesion() {
 	const sessionauth = async (e) => {
 		e.preventDefault();
 		const cookies = new Cookies();
+		const userType = $('#logInType').find(':selected').attr('id');
 		const emailInput = $('#usernameIt').val();
 		const passwordInput = $('#claveIt').val();
 		
@@ -27,16 +28,24 @@ export function InicioSesion() {
 		}
 		const cookie = new Cookies();
 		const accessToken = cookie.get(constants.CookieAccessToken);
-		const response = await fetch(
-			`${constants.API_URL}/usuarios?e=${emailInput}&p=${passwordInput}`,
-			{
-				// headers: { 'authorization': `Bearer ${accessToken}` },
-			}
-		);
+		var url = `${constants.API_URL}/usuarios?e=${emailInput}&p=${passwordInput}`;
+		
+		if (userType == 1) {
+			url = `${constants.API_URL}/administradores?e=${emailInput}&p=${passwordInput}`;
+		}
+		
+		const response = await fetch(url, {
+			// headers: { 'authorization': `Bearer ${accessToken}` },
+		});
 		const respJson = await response.json();
 		
 		if (respJson.success) {
-			cookies.set(constants.CookieUserID, respJson.Data[0]._id, { path: '/' });
+			cookies.set(constants.CookieIsAdmin, false, { path: '/' });
+			if (userType == 1) {
+				cookies.set(constants.CookieIsAdmin, true, { path: '/' });
+				alert("Salu2 admin");
+			}
+			cookies.set(constants.CookieUserID, respJson.data[0]._id, { path: '/' });
 			cookies.set(constants.CookieIsLogedIn, true, { path: '/' });
 			navigate('/');
 			return;
@@ -45,11 +54,9 @@ export function InicioSesion() {
 			//setError('Verifique que las credenciales sean correctas.');
 			$('.error').addClass('bounce');
 			$('.error').slideDown('fast');
-			
 			setTimeout(function () {
 				$('.error').removeClass('bounce');
 			}, 1000);
-			
 			return;
 		}
 	};
@@ -60,13 +67,18 @@ export function InicioSesion() {
 				<h1>Inicia sesion</h1>
 				
 				<form onSubmit={sessionauth} className="Formulario">
+					<br></br>
+					<select class="form-select" id="logInType">
+						<option id="0">Usuario común</option>
+						<option id="1">Administrador</option>
+					</select>
+					
 					<input
 						className="form-control"
 						type="text"
 						id="usernameIt"
 						placeholder="Correo"
 					></input>
-					<br></br>
 					
 					<input
 						className="form-control"
@@ -75,15 +87,17 @@ export function InicioSesion() {
 						placeholder="Contraseña"
 					></input>
 					
-					<br></br>
 					<button type="submit" className="btn btn-danger" id="btnLog">
 						INGRESAR
 					</button>
 					
+					<Link to="/NuevaCuenta">
+						<button className="btn btn-danger">
+							Crear cuenta
+						</button>
+					</Link>
 				</form>
-				
 				<br></br>
-				<Link to="/NuevaCuenta">Crear cuenta</Link>
 			</div>
 		</div>
 	);

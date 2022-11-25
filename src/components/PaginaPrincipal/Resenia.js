@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import constants from './../../constants.json';
-import './../../assets/css/paginaprincipal.css';
+import Cookies from 'universal-cookie';
+import './../../assets/css/Resenias.css';
 
-export function Publicacion(props){
+export function Resenia(props){
+	const cookies = new Cookies();
+	const isAdmin = cookies.get(constants.CookieIsAdmin);
 	const [state, setState] = useState(false);
 	const [user, setUser] = useState({});
 	
@@ -22,21 +25,16 @@ export function Publicacion(props){
 	return(
 		<>
 		{state ? (<>
-			<a className='Publicacion'>
-				<div className='Nombre_Usuario'>
-					<img src={user.image.path} alt={user.image.name} id="Img_perfil_publicacion"/>
-					{user.nombre}
-				</div>
-				<div className='Titulo_Publicacion'>{props.data.nombre}</div>
-				<div>{props.data.detalles}</div>
-				<div className='Contacto'>{props.data.numero}</div>
-				{props.data.multimedia.map((image, index) => (
-					<img src={image.path} alt={image.name}/>
-				))}
-			</a>
+			<li className="comentario" id={props.data._id}>
+				<img src={user.image.path} className="imagen-usuario" />
+				{props.data.resenia}
+				{isAdmin === 'true' ? (<>
+				<p className="close" onClick={props.deleteButton}>Borrar</p>
+				</>):(<></>)}
+			</li>
 		</>):(<></>)}
 		</>
 	);
 }
 
-export default Publicacion;
+export default Resenia;

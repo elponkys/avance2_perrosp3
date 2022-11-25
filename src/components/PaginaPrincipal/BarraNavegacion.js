@@ -1,28 +1,46 @@
 import React, { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import constants from './../../constants.json';
 import Cookies from 'universal-cookie';
 import $ from 'jquery';
 import './../../assets/css/paginaprincipal.css';
 
 export function BarraNavegacion() {
+	const location = useLocation();
 	const navigate = useNavigate();
 	const cookies = new Cookies();
 	const isLoggedIn = cookies.get(constants.CookieIsLogedIn);
-	
-	async function preLoad(){
-		const response = await fetch(`${constants.API_URL}/usuarios/${cookies.get(constants.CookieUserID)}`);
-		const userLogged = await response.json();
-		if(userLogged.success){
-			let userName = userLogged.data.nombre;
-			let userImage = userLogged.data.image.path;
-			$('#userName').html(userName);
-			$('#profilePic').attr('src', userImage);
-			$('#profilePic').attr('alt', userLogged.data.image.name);
-		}
-	}
+	const isAdmin = cookies.get(constants.CookieIsAdmin);
+	const urlParams = new URLSearchParams(location.search);
+	const searchRequest = urlParams.get('s');
 	
 	useEffect(() => {
+		$('#busqueda').val(searchRequest);
+		async function preLoad(){
+			var url;
+			if (isAdmin === 'true') {
+				url = `${constants.API_URL}/administradores/${cookies.get(constants.CookieUserID)}`;
+			}
+			else {
+				url = `${constants.API_URL}/usuarios/${cookies.get(constants.CookieUserID)}`;
+			}
+			const response = await fetch(url);
+			const userLogged = await response.json();
+			if (userLogged.success) {
+				let userName = userLogged.data.nombre;
+				if(isAdmin === 'true'){
+					userName = constants.AdminCharacter.concat(' ' + userName);
+				} else {
+					if (userLogged.data.status === 2) {
+						userName = constants.VerifiedCharacter.concat(' ' + userName);
+					}
+				}
+				let userImage = userLogged.data.image.path;
+				$('#userName').html(userName);
+				$('#profilePic').attr('src', userImage);
+				$('#profilePic').attr('alt', userLogged.data.image.name);
+			}
+		}
 		if(isLoggedIn === 'true'){
 			preLoad();
 		}
@@ -30,9 +48,20 @@ export function BarraNavegacion() {
 	
 	const logOut = () => {
 		cookies.remove(constants.CookieUserID);
+		cookies.remove(constants.CookieIsAdmin);
 		cookies.set(constants.CookieIsLogedIn, false, { path: '/' });
 		navigate('/');
 		return;
+	};
+	
+	const busqueda = () => {
+		let searchTerms = $('#busqueda').val();
+		if(searchTerms){
+			navigate(`/Busqueda?s=${searchTerms}`);
+			if(location.pathname.includes('Busqueda')) {
+				window.location.reload();
+			}
+		}
 	};
 	
 	return(
@@ -47,9 +76,9 @@ export function BarraNavegacion() {
 				</button>
 			</Link>
 			<div id="Barra">
-				<input type="text" name="Buscador" placeholder="Busqueda" className='form-control'/>
+				<input type="text" name="Buscador" placeholder="Busqueda" className='form-control' id='busqueda'/>
 			</div>
-			<button type="submit" className='btn btn-danger'>Buscar</button> 
+			<button type="submit" className='btn btn-danger' onClick={busqueda}>Buscar</button> 
 			
 			{isLoggedIn === 'true' ? (
 				<>

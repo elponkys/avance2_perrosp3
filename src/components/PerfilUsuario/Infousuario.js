@@ -1,15 +1,24 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import $ from 'jquery';
 import constants from '../../constants.json'
 import './../../assets/css/perfilusuario.css';
 
 export function Encabezado(){
 	const location = useLocation();
+	const cookies = new Cookies();
+	const isAdmin = cookies.get(constants.CookieIsAdmin);
 	
 	async function preLoad(){
 		const userID = location.pathname.split('/')[2];
-		const response = await fetch(`${constants.API_URL}/usuarios/${userID}`);
+		var url;
+		if (isAdmin === 'true') {
+			url = `${constants.API_URL}/administradores/${userID}`;
+		} else {
+			url = `${constants.API_URL}/usuarios/${userID}`;
+		}
+		const response = await fetch(url);
 		const user = await response.json();
 		if(user.success){
 			let service = user.data.servicio;

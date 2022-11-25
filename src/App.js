@@ -18,6 +18,7 @@ import Usuarios from "./components/Usuarios/Usuarios";
 import CrearCuenta from "./components/CrearCuenta/NuevaCuenta";
 import PubliNueva from "./components/PubliNueva/PubliNueva";
 import SoliPubli from "./components/PubliNueva/SoliPubli";
+import Busqueda from "./components/Busqueda/Publicaciones";
 
 //import "bootstrap/dist/css/bootstrap.min.css";
 import './assets/css/Style.css';
@@ -37,6 +38,7 @@ function App() {
 					<Route path ="/PubliNueva" element = {<><BarraNavegacion/><PubliNueva/></>}> </Route>
 					<Route path ="/SoliPubli" element = {<><BarraNavegacion/><Encabezado/><SoliPubli/></>}> </Route>
 					<Route path ="/InicioSesion" element = {<InicioSesion/>}> </Route>
+					<Route path ="/Busqueda" element = {<><BarraNavegacion/><Busqueda/></>}> </Route>
 				</Routes>
 			</Router>
 			

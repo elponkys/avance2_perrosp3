@@ -68,8 +68,10 @@ export function NuevaCuenta() {
 		const validEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 		const validPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 		
-		if (name === '' || email === '' || contra === '') {
+		if (name === '' || email === '' || contra === '' || servicio === '') {
 			alert('Llene los campos vacios.');
+		} else if (servicio.length < 3) {
+			alert('Agregue un servicio');
 		} else if (contra.length > 15) {
 			alert('La contraseña debe tener menos de 15 caracteres');
 		} else if (!validEmail.test(email)) {
@@ -79,7 +81,7 @@ export function NuevaCuenta() {
 		} else if (!validName.test(name)) {
 			alert('El nombre no puede tener numeros ni caracteres especiales');
 		} else {
-			alert('');
+			//alert('');
 			//const img = $('#profilePic').attr('src');
 			const img = imageblob;
 			const filesito = $('#profilePic')[0].files[0];
@@ -108,6 +110,7 @@ export function NuevaCuenta() {
 					contrasenia: contra,
 					servicio: servicio,
 					image: profilePic,
+					status: 0,
 				};
 				
 				const response = await fetch(`${constants.API_URL}/usuarios/`, {
