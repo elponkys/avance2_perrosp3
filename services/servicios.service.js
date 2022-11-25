@@ -9,7 +9,7 @@ class servicioService {
 	}
 	
 	async find(filter) {
-		let servicesDB = await Model.find(filter).sort({ fecha : 1 });
+		let servicesDB = await Model.find(filter).sort({ fecha : -1 });
 		
 		if (servicesDB == undefined || servicesDB == null)
 			throw boom.notFound("errNotFound");

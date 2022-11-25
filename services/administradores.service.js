@@ -8,16 +8,17 @@ class adminService {
 		return data;
 	}
 
-	async find(limit) {
-		let response = {};
-		let adminsDB = await Model.find();
+	async find(filter) {
+		let adminsDB = await Model.find(filter);
 		
-		//Obtenemos solo la cantidad deseada de registros
-		response['admins'] = adminsDB
-			? adminsDB.filter((item, index) => item && index < limit)
-			: adminsDB;
+		if (adminsDB == undefined || adminsDB == null)
+			throw boom.notFound("errNotFound");
+		if (adminsDB.length <= 0)
+			throw boom.notFound("errEmpty");
 		
-		return response;
+		adminsDB = adminsDB.filter((item) => item);
+		
+		return adminsDB;
 	}
 	
 	async findOne(id) {

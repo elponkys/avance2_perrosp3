@@ -10,10 +10,23 @@ const {
 } = require('../dtos/resenia.dto');
 
 router.get('/', async (req, res) => {
-	const { size } = req.query;
-	const limit = size || 10;
-	const resenias = await service.find(limit);
-	res.json(resenias);
+	try {
+		const { p } = req.query;
+		const filter = {};
+		
+		Object.assign(filter, {
+			id_producto: p
+		});
+		
+		const resenias = await service.find(filter);
+		res.json({
+			'success': true,
+			'message': 'Estas son las resenias encontradas',
+			'data': resenias
+		});
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 //STATUS CODE
@@ -105,7 +118,9 @@ router.delete(
 		const { id } = req.params;
 		const result = await service.delete(id);
 		res.json({
-			result,
+			'success': true,
+			'message': 'Reseña eliminada correctamente',
+			'data': result
 		});
 	}
 );

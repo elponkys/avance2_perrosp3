@@ -17,12 +17,21 @@ const {
 
 router.get('/', async (req, res) => {
 	try{
-		const { u } = req.query;
+		const { u, s } = req.query;
 		const filter = {};
 		
 		if (u) {
 			Object.assign(filter, {
 				id_usuario: u
+			})
+		}
+		
+		if (s) {
+			Object.assign(filter, {
+				nombre: {
+					$regex: new RegExp(s)
+				},
+				//detalles: s
 			})
 		}
 		

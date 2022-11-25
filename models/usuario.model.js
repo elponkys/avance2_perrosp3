@@ -11,6 +11,7 @@ const userSchema = new Schema({
 	contrasenia: String,
 	servicio: String,
 	image: Object,
+	status: Number,
 });
 const model = mongoose.model('usuario', userSchema);
 module.exports = model;

@@ -8,15 +8,17 @@ class reseniaService {
 		return data;
 	}
 
-	async find(limit) {
-		let response = {};
-		let reviewsDB = await Model.find();
+	async find(filter) {
+		let reviewsDB = await Model.find(filter);
 		
-		response['reviews'] = reviewsDB
-			? reviewsDB.filter((item, index) => item && index < limit)
-			: reviewsDB;
+		if (reviewsDB == undefined || reviewsDB == null)
+			throw boom.notFound("errNotFound");
+		if (reviewsDB.length <= 0)
+			throw boom.notFound("errEmpty");
 		
-		return response;
+		reviewsDB = reviewsDB.filter((item) => item);
+		
+		return reviewsDB;
 	}
 
 	async findOne(id) {

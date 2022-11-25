@@ -10,10 +10,36 @@ const {
 } = require('../dtos/administrador.dto');
 
 router.get('/', async (req, res) => {
-	const { size } = req.query;
-	const limit = size || 10;
-	const administradores = await service.find(limit);
-	res.json(administradores);
+	try{
+		const { e, p } = req.query;
+		const filter = {};
+		
+		Object.assign(filter, {
+			isActive: true
+		});
+		
+		if (e) {
+			Object.assign(filter, {
+				correo: e
+			});
+		}
+		
+		if (p) {
+			Object.assign(filter, {
+				contrasenia: p
+			});
+		}
+		
+		const administradores = await service.find(filter);
+		res.json({
+			'success': true,
+			'message': 'Estos son los usuarios encontrados',
+			'data': administradores
+		});
+	}
+	catch (error) {
+		console.log(error);
+	}
 });
 
 //STATUS CODE

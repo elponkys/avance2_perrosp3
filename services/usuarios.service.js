@@ -10,18 +10,7 @@ class usuarioService {
 		return data;
 	}
 	
-	async findxd() {
-		let response = {};
-		let usersDB = await Model.find();
-		
-		//Obtenemos solo la cantidad deseada de registros
-		response['users'] = usersDB;
-		
-		return response;
-	}
-
 	async find(filter) {
-		
 		let users = await Model.find(filter);
 		
 		if (users == undefined || users == null)
@@ -32,7 +21,6 @@ class usuarioService {
 		users = users.filter((item) => item);
 		
 		return users;
-		
 	}
 
 	async findOne(id) {
@@ -58,15 +46,17 @@ class usuarioService {
 			contrasenia: user.contrasenia,
 			servicio: user.servicio,
 			image: user.image,
+			status: user.status,
 		};
-		const { isActive, nombre, fecha, correo, contrasenia, image, servicio } = changes;
-		user.isActive = isActive;
-		user.nombre = nombre;
-		user.fecha = fecha;
-		user.correo = correo;
-		user.contrasenia = contrasenia;
-		user.servicio = servicio;
-		user.image = image;
+		const { isActive, nombre, fecha, correo, contrasenia, image, servicio, status } = changes;
+		user.isActive = (isActive) ? isActive : user.isActive;
+		user.nombre = (nombre) ? nombre : user.nombre;
+		user.fecha = (fecha) ? fecha : user.fecha;
+		user.correo = (correo) ? correo : user.correo;
+		user.contrasenia = (contrasenia) ? contrasenia : user.contrasenia;
+		user.servicio = (servicio) ? servicio : user.servicio;
+		user.image = (image) ? image : user.image;
+		user.status = (status != null) ? status : user.status;
 		user.save();
 		
 		return {

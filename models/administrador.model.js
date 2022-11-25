@@ -9,7 +9,7 @@ const adminSchema = new Schema({
 	fecha: String,
 	correo: String,
 	contrasenia: String,
-	image: String,
+	image: Object,
 });
 const model = mongoose.model('administradore', adminSchema);
 module.exports = model;

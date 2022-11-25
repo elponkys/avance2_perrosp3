@@ -16,31 +16,40 @@ const {
 
 router.get('/', async (req, res) => {
 	try {
-		const { e, p } = req.query;
+		const { e, p, s } = req.query;
 		const filter = {};
+		
+		Object.assign(filter, {
+			isActive: true
+		});
 		
 		if (e) {
 			Object.assign(filter, {
 				correo: e
-			})
+			});
 		}
 		
 		if (p) {
 			Object.assign(filter, {
 				contrasenia: p
-			})
+			});
+		}
+		
+		if (s) {
+			Object.assign(filter, {
+				status: s
+			});
 		}
 		
 		const users = await service.find(filter)
 		res.json({
 			'success': true,
 			'message': 'Estos son los usuarios encontrados',
-			'Data': users
+			'data': users
 		});
-	
-	  } catch (error) {
+	} catch (error) {
 		console.log(error);
-	  }
+	}
 });
 
 //STATUS CODE
@@ -66,55 +75,46 @@ router.post(
 	'/',
 	validatorHandler(createUsuarioDto, 'body'),
 	async (req, res, next) => {
-
 		try {
 			const body = req.body;
 			const { image } = body;
-
+			
 			var name = null, path = null, extention = null;
 			if (image) {
-
 				({ name, path, extention } = image);
-		  
+				
 				name = faker.datatype.uuid() + name + "." + extention;
-		  
+				
 				let buffer = new Buffer(path, 'base64')
 				await blobService.createBlockBlobFromText(container, name, buffer, {
-				  contentType: extention
+					contentType: extention
 				}, async function (err) {
-				  if (err) {
-		  
-					res.json({
-					  'success': false,
-					  'message': err
-					});
-		  
-				  } else {
-		  
-					const fileURL =`${MULTIMEDIAURL}${MULTIMEDIAPROFILEPICS}${name}`;
-		  
-					body["image"]["path"] = fileURL;
-					const user = await service.create(body);
-		  
-					res.json({
-					  'success': true,
-					  'message': "El usuario se ha creado con exito",
-					  'Data': user
-					});
-		  
-				  }
-		  
+					if (err) {
+						res.json({
+							'success': false,
+							'message': err
+						});
+					} else {
+						const fileURL =`${MULTIMEDIAURL}${MULTIMEDIAPROFILEPICS}${name}`;
+						
+						body["image"]["path"] = fileURL;
+						const user = await service.create(body);
+						res.json({
+							'success': true,
+							'message': "El usuario se ha creado con exito",
+							'data': user
+						});
+					}
 				})
-	  
-			  } else {
+			} else {
 				const user = await service.create(body);
-		  
+				
 				res.json({
-				  'success': true,
-				  'message': "El usuario se ha creado con exito",
-				  'Data': user
+					'success': true,
+					'message': "El usuario se ha creado con exito",
+					'data': user
 				});
-			  }	  
+			}
 			}catch (error) {
 			next(error);
 		}
@@ -133,8 +133,8 @@ router.patch(
 			const body = req.body;
 			const usuario = await service.update(id, body);
 			res.json({
-				message: 'update',
-				data: usuario,
+				success: true,
+				data: usuario.actualizado,
 				id,
 			});
 		} catch (error) {
