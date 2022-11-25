@@ -27,7 +27,12 @@ export function Resenia(props){
 		{state ? (<>
 			<li className="comentario" id={props.data._id}>
 				<img src={user.image.path} className="imagen-usuario" />
-				{props.data.resenia}
+				<div className='Comentario'>
+
+					<div className='Usuario'>{user.nombre}</div>
+					<div className='Reseña'>{props.data.resenia}</div>
+
+				</div>
 				{isAdmin === 'true' ? (<>
 				<p className="close" onClick={props.deleteButton}>Borrar</p>
 				</>):(<></>)}

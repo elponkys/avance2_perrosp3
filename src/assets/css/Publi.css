@@ -35,12 +35,21 @@ input{
 	background-color: rgb(127, 131, 65);
 }
 .container{
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+
 	color: black;
 	padding-top: 90px;
 	width: 1000px;
 	height: fit-content;
 	background-color: #ff7d7d;
 	border-radius: 20px;
+
+	margin-left: 10%;
+	margin-bottom: 5%;
 }
 .subcontainer{
 	text-align: center;

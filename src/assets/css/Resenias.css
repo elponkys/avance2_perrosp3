@@ -1,3 +1,27 @@
+.Comentario{
+
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	
+	
+}
+
+.Reseña{
+
+	margin-left: 20px;
+	margin-top: 10px;
+
+}
+
+.Usuario{
+
+	margin-left: -150px;
+	color: rgb(109, 109, 109);
+
+}
+
 .Reseñas{
 	width: 100%;
 	height: 100vh;
@@ -5,6 +29,7 @@
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
+	margin-top: 3%;
 }
 
 .contenedor{
@@ -36,7 +61,7 @@
 .comentario{
 	background-color: #FF9494;
 	width: 100%;
-	height: 60px;
+	height: 100%;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -54,7 +79,7 @@
 }
 
 .imagen-usuario{
-	width: 50px;
+	width: 80px;
 	height: 80px;
 	display: flex;
 	justify-content: center;
@@ -66,6 +91,7 @@ img{
 }
 
 .input-com{
+	
 	width: 500px;
 	height: 100px;
 	background: none;

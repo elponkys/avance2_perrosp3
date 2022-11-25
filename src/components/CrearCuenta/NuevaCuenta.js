@@ -5,7 +5,14 @@ import './../../assets/css/NuevaCuenta.css';
 import { Link } from 'react-router-dom';
 import constants from './../../constants.json';
 import $ from 'jquery';
+
+import { useNavigate } from 'react-router-dom';
+
+
 export function NuevaCuenta() {
+
+	const navigate = useNavigate();
+
 	function getActualDate() {
 		var fecha = new Date();
 		var dia = fecha.getDate();
@@ -124,6 +131,9 @@ export function NuevaCuenta() {
 				const respJson = await response.json();
 				console.log(respJson);
 				if (respJson.success) {
+
+					alert("Se ha creado el usuario con exito");
+					navigate('/InicioSesion');
 				}
 			});
 			reader.readAsDataURL(filesito);

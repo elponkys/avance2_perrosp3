@@ -22,7 +22,7 @@ export function Publicacion(props){
 	return(
 		<>
 		{state ? (<>
-			<a className='Publicacion'>
+			<a className='Publicacion2'>
 				<div className='Nombre_Usuario'>
 					<img src={user.image.path} alt={user.image.name} id="Img_perfil_publicacion"/>
 					{user.nombre}
