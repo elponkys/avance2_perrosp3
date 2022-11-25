@@ -17,7 +17,7 @@ const {
 
 router.get('/', async (req, res) => {
 	try{
-		const { u, s } = req.query;
+		const { u, s, t, p, e, c } = req.query;
 		const filter = {};
 		
 		if (u) {
@@ -32,6 +32,36 @@ router.get('/', async (req, res) => {
 					$regex: new RegExp(s)
 				},
 				//detalles: s
+			})
+		}
+		
+		if (t) {
+			Object.assign(filter, {
+				publicacion: t
+			})
+		}
+		
+		if (p) {
+			Object.assign(filter, {
+				pais: {
+					$regex: new RegExp(p)
+				},
+			})
+		}
+		
+		if (e) {
+			Object.assign(filter, {
+				estado: {
+					$regex: new RegExp(e)
+				},
+			})
+		}
+		
+		if (c) {
+			Object.assign(filter, {
+				ciudad: {
+					$regex: new RegExp(c)
+				},
 			})
 		}
 		
