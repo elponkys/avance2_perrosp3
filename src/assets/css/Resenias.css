@@ -1,25 +1,18 @@
 .Comentario{
-
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
-	
-	
 }
 
 .Reseña{
-
 	margin-left: 20px;
 	margin-top: 10px;
-
 }
 
 .Usuario{
-
 	margin-left: -150px;
 	color: rgb(109, 109, 109);
-
 }
 
 .Reseñas{
@@ -91,7 +84,6 @@ img{
 }
 
 .input-com{
-	
 	width: 500px;
 	height: 100px;
 	background: none;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import $ from 'jquery';
@@ -10,36 +10,35 @@ export function Encabezado(){
 	const cookies = new Cookies();
 	const isAdmin = cookies.get(constants.CookieIsAdmin);
 	
-	async function preLoad(){
-		const userID = location.pathname.split('/')[2];
-		var url;
-		if (isAdmin === 'true') {
-			url = `${constants.API_URL}/administradores/${userID}`;
-		} else {
-			url = `${constants.API_URL}/usuarios/${userID}`;
-		}
-		const response = await fetch(url);
-		const userLogged = await response.json();
-		if(userLogged.success){
-			let userMail = userLogged.data.correo;
-			let userImage = userLogged.data.image.path;
-			let userName = userLogged.data.nombre;
-			$('#UserFullname').html(userName);
-			if(isAdmin === 'true'){
-				userName = userName.concat(' ' + constants.AdminCharacter);
-			} else {
-				if (userLogged.data.status === 2) {
-					userName = userName.concat(' ' + constants.VerifiedCharacter);
-				}
-			}
-			
-			$('#Username').html(userName);
-			$('#Avatar').attr('src', userImage);
-			$('#userMail').html(userMail);
-		}
-	}
-	
 	useEffect(() => {
+		async function preLoad(){
+			const userID = location.pathname.split('/')[2];
+			var url;
+			if (isAdmin === 'true') {
+				url = `${constants.API_URL}/administradores/${userID}`;
+			} else {
+				url = `${constants.API_URL}/usuarios/${userID}`;
+			}
+			const response = await fetch(url);
+			const userLogged = await response.json();
+			if(userLogged.success){
+				let userMail = userLogged.data.correo;
+				let userImage = userLogged.data.image.path;
+				let userName = userLogged.data.nombre;
+				$('#UserFullname').html(userName);
+				if(isAdmin === 'true'){
+					userName = userName.concat(' ' + constants.AdminCharacter);
+				} else {
+					if (userLogged.data.status === 2) {
+						userName = userName.concat(' ' + constants.VerifiedCharacter);
+					}
+				}
+				
+				$('#Username').html(userName);
+				$('#Avatar').attr('src', userImage);
+				$('#userMail').html(userMail);
+			}
+		}
 		preLoad();
 	}, []);
 	

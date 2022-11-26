@@ -35,7 +35,6 @@ input{
 	background-color: rgb(127, 131, 65);
 }
 .container{
-
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 //import "bootstrap/dist/css/bootstrap.min.css";
-import './../../assets/css/NuevaCuenta.css';
-
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import constants from './../../constants.json';
+import './../../assets/css/NuevaCuenta.css';
 import $ from 'jquery';
 
-import { useNavigate } from 'react-router-dom';
-
-
 export function NuevaCuenta() {
-
 	const navigate = useNavigate();
-
+	
 	function getActualDate() {
 		var fecha = new Date();
 		var dia = fecha.getDate();
@@ -30,7 +25,7 @@ export function NuevaCuenta() {
 		
 		return [anio, outMes, outDia].join('-');
 	}
-
+	
 	const renderMultimedia = (source) => {
 		if (source) {
 			return (
@@ -131,7 +126,6 @@ export function NuevaCuenta() {
 				const respJson = await response.json();
 				console.log(respJson);
 				if (respJson.success) {
-
 					alert("Se ha creado el usuario con exito");
 					navigate('/InicioSesion');
 				}

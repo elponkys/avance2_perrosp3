@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import constants from '../../constants.json';
@@ -8,7 +8,49 @@ import { Link } from 'react-router-dom';
 export function Botones(){
 	const location = useLocation();
 	const cookies = new Cookies();
+	const userID = location.pathname.split('/')[2];
 	const isAdmin = cookies.get(constants.CookieIsAdmin);
+	const [user, setUser] = useState({});
+	
+	useEffect(() => {
+		async function preLoad(){
+			var url;
+			if (isAdmin === 'true') {
+				url = `${constants.API_URL}/administradores/${userID}`;
+			} else {
+				url = `${constants.API_URL}/usuarios/${userID}`;
+			}
+			const response = await fetch(url);
+			const userLogged = await response.json();
+			if(userLogged.success){
+				setUser(userLogged.data);
+				if(isAdmin === 'true'){
+					user.nombre = user.nombre.concat(' ' + constants.AdminCharacter);
+				} else {
+					if (userLogged.data.status === 2) {
+						user.nombre = user.nombre.concat(' ' + constants.VerifiedCharacter);
+					}
+				}
+			}
+		}
+		preLoad();
+	}, []);
+	
+	const askForVerification = async (id) => {
+		const response = await fetch(`${constants.API_URL}/usuarios/${id}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ status: 1, }),
+		});
+		const respJson = await response.json();
+		if(respJson.success){
+			alert(respJson.data.nombre + ", su solicitud ha sido enviada");
+			window.location.reload();
+		}
+		return;
+	}
 	
 	return(
 		<>
@@ -17,6 +59,13 @@ export function Botones(){
 				
 				{isAdmin !== 'true' ? (
 					<>
+					{user.status === 0 ? (
+						<>
+						<button type = "submit" className='btn btn-danger' onClick={() => askForVerification(userID)}>
+							Solicitar verificación
+						</button> 
+						</>
+					) : (<></>)}
 					<Link to = {`/Perfil/${location.pathname.split('/')[2]}/Publicaciones`}>  
 						<button type = "submit" className='btn btn-danger'>
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className='bi bi-house' viewBox="0 0 16 16">
@@ -43,7 +92,7 @@ export function Botones(){
 							<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
 							<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
 						</svg>
-						Informacion
+						Información
 					</button> 
 				</Link>
 			</div>

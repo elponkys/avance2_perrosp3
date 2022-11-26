@@ -29,9 +29,7 @@ function Usuarios() {
 		});
 		const respJson = await response.json();
 		if(respJson.success){
-			console.log(respJson.data);
 			alert("El usuario " + respJson.data.nombre + " ha sido aceptado");
-			return;
 		}
 		return;
 	};
@@ -46,9 +44,7 @@ function Usuarios() {
 		});
 		const respJson = await response.json();
 		if(respJson.success){
-			console.log(respJson.data);
 			alert("El usuario " + respJson.data.nombre + " ha sido rechazado");
-			return;
 		}
 	};
 	
