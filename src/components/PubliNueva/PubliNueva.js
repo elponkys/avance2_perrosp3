@@ -215,16 +215,18 @@ export const PubliNueva = (props) => {
 					</div>
 					<div class="container2">
 						<div class="mb-3">
-							<div className="publication-multimedia-modal">
-								{multimediaJson ? renderMultimedia(multimediaJson) : <></>}
-							</div>
 							<input
 								id="file-input"
 								type="file"
 								multiple
+								hidden
 								accept=".jpeg, .jpg, .png, .bmp, .mp4"
 								onChange={imageHandleChange}
 							/>
+							<label for="file-input" id="imgLabel">Subir Imagen</label>
+							<div className="publication-multimedia-modal">
+								{multimediaJson ? renderMultimedia(multimediaJson) : <></>}
+							</div>
 						</div>
 						
 						<input class="a" type="submit" name="submit" value="Publicar"/>

@@ -86,7 +86,7 @@ export function NuevaCuenta() {
 			//alert('');
 			//const img = $('#profilePic').attr('src');
 			const img = imageblob;
-			const filesito = $('#profilePic')[0].files[0];
+			const filesito = $('#profilePic1')[0].files[0];
 			const reader = new FileReader();
 			//reader.readAsText(filesito);
 			reader.addEventListener('load', async function readFile(event) {
@@ -146,12 +146,14 @@ export function NuevaCuenta() {
 							<div class="img">
 								<div class="img2">
 									<input
-										id="profilePic"
+										id="profilePic1"
 										name="profilePic"
 										type="file"
 										accept=".jpeg, .jpg, .png, .bmp"
+										hidden
 										onChange={imageHandleChange}
 									/>
+									<label for="profilePic1" id="imgLabel">Subir Imagen</label>
 									<img src={profilePic} />
 								</div>
 							</div>

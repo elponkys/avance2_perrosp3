@@ -68,7 +68,26 @@ html,body{
 
 .img2{
 	height: 80px;
-	width: 400px; 
+	width: 400px;
+}
+
+#profilePic1{
+	width: 50%;
+}
+
+#imgLabel{
+	color: black;
+}
+
+input{
+	height: 50%;
+	width: 50%;
+	outline: none;
+	padding-left: 15px;
+	border-radius: 15px;
+	border: none;
+	margin: 10px;
+	font-size: 17px;
 }
 
 .form-inner form .field input{
