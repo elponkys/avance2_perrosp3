@@ -9,7 +9,7 @@ class reseniaService {
 	}
 
 	async find(filter) {
-		let reviewsDB = await Model.find(filter);
+		let reviewsDB = await Model.find(filter).sort({ fecha : -1 });
 		
 		if (reviewsDB == undefined || reviewsDB == null)
 			throw boom.notFound("errNotFound");
